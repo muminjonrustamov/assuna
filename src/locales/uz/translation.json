@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "product": "Mahsulotlar",
+    "contact": "Aloqa"
+  },
+  "footer": {
+    "desc": "As-Sunna — sog‘liqni saqlashni yaxshilash uchun sifatli va arzon dori vositalarini ishlab chiqaruvchi farmatsevtika kompaniyasi.",
+    "contact": "Bog‘lanish",
+    "address": "Chilonzor ko‘chasi, Toshkent, O‘zbekiston",
+    "phone": "+998 88 254 00 01",
+    "email": "assuna01@gmail.com",
+    "navigation": "Navigatsiya",
+    "rights": "© 2025 As-Sunna. Barcha huquqlar himoyalangan."
+  },
+  "home": {
+    "brand": "As-Sunna",
+    "slogan": "Innovatsion farmatsevtik yechimlar",
+    "intro": "Biz dunyo bo'ylab sog'liq va hayot sifatini yaxshilash uchun yuqori sifatli dori-darmonlar ishlab chiqaramiz.",
+    "products": "Mahsulotlar",
+    "about": "Biz haqimizda",
+    "aboutTitle": "Kompaniyamiz haqida",
+    "aboutText": "As-Sunna farmatsevtika sohasida yetakchi hisoblanadi — innovatsion, ishonchli va ommaga ochiq dori vositalarini yaratadi.",
+    "cardioTitle": "Yurak salomatligi",
+    "cardioText": "Yurak va qon aylanishini qo‘llab-quvvatlovchi ilg‘or dori vositalari.",
+    "vitaminsTitle": "Vitaminlar va qo‘shimchalar",
+    "vitaminsText": "Optimal sog‘liq uchun zarur bo‘lgan vitamin va minerallar.",
+    "qualityTitle": "Sifat nazorati",
+    "qualityText": "Xavfsiz dori vositalari uchun qat’iy sinov va nazorat.",
+    "companyTitle": "Sog‘liqni saqlashdagi innovatsiyalar",
+    "companyText": "Zamonaviy laboratoriyalar va tajribali mutaxassislar bilan bemorlar hayotini yaxshilovchi davo usullarini ishlab chiqamiz.",
+    "researchTitle": "Ilg‘or tadqiqotlar",
+    "researchText": "Farmatsevtika sohasida ilg‘or tadqiqotlar va rivojlanish",
+    "teamTitle": "Ekspert jamoa",
+    "teamText": "Dunyo darajasidagi olimlar va tadqiqotchilar",
+    "safetyTitle": "Xavfsizlik birinchi o‘rinda",
+    "safetyText": "Mahsulotlar xavfsizligi va sinov jarayonlari",
+    "learnMore": "Biz haqimizda batafsil"
+  },
+  "about": {
+    "title": "As-Sunna haqida",
+    "description": "Biz innovatsion dori vositalari va sog‘liqni saqlash yechimlari orqali sog‘liq va hayot sifatini yaxshilashga qaratilgan yetakchi farmatsevtika kompaniyasimiz.",
+    "missionTitle": "Bizning vazifamiz",
+    "missionText": "Sifatli dori vositalariga kirishni ta’minlash va aholi salomatligini yaxshilashga hissa qo‘shish.",
+    "visionTitle": "Bizning maqsadimiz",
+    "visionText": "Innovatsion yechimlar va yuqori sifat standartlari bilan tanilgan mintaqadagi yetakchi farmatsevtika kompaniyasiga aylanish.",
+    "valuesTitle": "Bizning qadriyatlarimiz",
+    "qualityExcellenceTitle": "Sifat mukammalligi",
+    "qualityExcellenceText": "Har bir mahsulotda eng yuqori farmatsevtika sifati va xavfsizlik standartlariga amal qilamiz.",
+    "patientFocusTitle": "Bemorlarga e’tibor",
+    "patientFocusText": "Har bir qarorimiz bemorlarning sog‘lig‘i va farovonligini yaxshilashga qaratilgan.",
+    "innovationTitle": "Innovatsiya",
+    "innovationText": "Tadqiqotlar va ilg‘or davo usullarini ishlab chiqish orqali farmatsevtika sohasida doimiy rivojlanishga intilamiz.",
+    "historyTitle": "Bizning tariximiz",
+    "history1Title": "Kompaniya tarixi",
+    "history1Text1": "2018 yilda Namangan shahrida tashkil etilgan.",
+    "history1Text2": "Yuqori sifat va mijozlarga yo‘naltirilgan yondashuvi bilan tez mashhurlikka erishdi.",
+    "history2Title": "Asosiy faoliyatlar",
+    "history2List1": "Sog‘liq uchun foydali mahsulotlar: biologik faol qo‘shimchalar, yog‘lar va kapsulalar.",
+    "history2List2": "Klinik tadqiqotlar olib boradi va ilmiy asosga ega ishlanmalarga tayangan holda faoliyat yuritadi.",
+    "history3Title": "Rahbariyat",
+    "history3List1": "Raxmatullo Mamajonov — Bosh direktor",
+    "history3List2": "Otabek Urunboev — Direktor",
+    "history3List3": "Nasimboy Dehqonov — Moliyaviy direktor",
+    "history4Title": "Mahsulot turlari",
+    "history4Text": "Kunjut yog‘i, qora sedana yog‘i, zaytun yog‘i, shuningdek, turli kapsulalar va qo‘shimchalar — bularning barchasi O‘zbekiston dorixonalarida retseptsiz mavjud.",
+    "history5Title": "Faol moddalari",
+    "history5Text": "Kompaniya ilmiy jihatdan isbotlangan biofaol moddalarni qo‘llaydi, lekin taqiqlangan yoki noodatiy kimyoviy moddalarni ishlab chiqarmaydi. Barcha mahsulotlar sog‘liqni qo‘llab-quvvatlovchi qo‘shimchalar va yog‘lar sifatida taqdim etiladi."
+  },
+  "product": {
+    "title": "Mahsulotlar",
+    "description": "Assuna Farmatefical — yuqori sifatli va samarali dori vositalarini ishlab chiqarishga ixtisoslashgan farmatsevtika kompaniyasi. Kompaniya o‘z mahsulotlarining qat'iy sifat standartlariga javob berishini ta'minlab, davolashdagi innovatsiyalarni qo‘llab-quvvatlab va ishonchli sog‘liqni saqlash yechimlarini eng ko‘p ehtiyoj sezgan odamlarga yetkazib, jamoat salomatligini yaxshilashga intiladi.",
+    "noProducts": "Mahsulotlar yo‘q",
+    "detailsBtn": "Batafsil",
+    "categories": "Kategoriyalar",
+    "allProducts": "Barcha mahsulotlar"
+  },
+  "common": {
+    "loading": "Yuklanmoqda..."
+  },
+  "contact": {
+    "title": "Aloqa ma'lumotlari",
+    "subtitle": "Mahsulotlarimiz yoki xizmatlarimiz bo'yicha savollaringiz bo'lsa, jamoamiz bilan bog'laning.",
+    "form": {
+      "title": "Bizga xabar yuboring",
+      "firstName": "Ism",
+      "lastName": "Familiya",
+      "email": "Email",
+      "messagePlaceholder": "Qanday yordam bera olishimizni ayting...",
+      "sendButton": "Xabar yuborish",
+      "successMessage": "Xabar muvaffaqiyatli yuborildi!"
+    },
+    "address": {
+      "title": "Manzil",
+      "value": "Chilonzor, 9-kvartal, 12-uy, Toshkent, O'zbekiston 100097"
+    },
+    "phone": {
+      "title": "Telefon",
+      "values": [
+        "+998-88-254-00-01",
+        "+998-88-254-00-02",
+        "+998-88-254-00-03"
+      ]
+    },
+    "email": {
+      "title": "Email",
+      "value": "assuna01@gmail.com"
+    },
+    "hours": {
+      "title": "Ish vaqti",
+      "value": [
+        "Dushanba - Juma: 9:00 - 18:00",
+        "Shanba: 9:00 - 13:00",
+        "Yakshanba: dam olish kuni"
+      ]
+    }
+  }
+}

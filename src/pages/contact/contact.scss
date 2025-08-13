@@ -1,0 +1,115 @@
+.contact-page {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 30px 15px;
+  font-family: 'Segoe UI', sans-serif;
+
+  h2 {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .subtext {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .contact-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    .contact-form,
+    .contact-info {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .contact-form {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+
+      h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 6px; // 🔹 меньше расстояние между элементами
+
+        .form-row {
+          display: flex;
+          gap: 6px;
+
+          .form-group {
+            flex: 1;
+          }
+        }
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 2px; // 🔹 ещё меньше между label и input
+
+          label {
+            font-weight: 600;
+            font-size: 12px;
+            color: #333;
+          }
+        }
+
+        input,
+        textarea {
+          padding: 5px 8px; // 🔹 компактные поля
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 13px;
+        }
+
+        textarea {
+          resize: vertical;
+          min-height: 70px;
+        }
+
+        button {
+          margin-top: -30px;
+          background: orangered;
+          color: white;
+          border: none;
+          padding: 8px;
+          border-radius: 5px;
+          font-weight: bold;
+          cursor: pointer;
+          transition: background 0.3s ease;
+
+          &:hover {
+            background: #325fd6;
+          }
+        }
+      }
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .info-box {
+        background: #f1f5ff;
+        padding: 12px;
+        border-radius: 8px;
+
+        h4 {
+          margin-bottom: 5px;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

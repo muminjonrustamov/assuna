@@ -1,0 +1,118 @@
+{
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "product": "Products",
+      "contact": "Contact Us"
+    },
+    "footer": {
+      "desc": "As-Sunna is a pharma company making quality, affordable medicine for better health.",
+      "contact": "Contact",
+      "location": "Chilonzor street, Tashkent, Uzbekistan",
+      "phone": "+998 88 254 00 01",
+      "email": "assuna01@gmail.com",
+      "navigation": "Navigation",
+      "copyright": "© 2025 As-Sunna. All rights reserved."
+    },
+    "home": {
+      "brand": "As-Sunna",
+      "slogan": "Innovative Pharmaceutical Solutions",
+      "intro": "We manufacture high-quality medicines to improve health and quality of life for people worldwide.",
+      "products": "Products",
+      "about": "About",
+      "aboutTitle": "About our company",
+      "aboutText": "At As-Sunna, we lead the way in pharmaceutical innovation — creating advanced, reliable, and accessible medicines that enhance the health and quality of life for people around the world.",
+      "cardioTitle": "Cardiovascular Care",
+      "cardioText": "Advanced medicines for heart health and circulation support.",
+      "vitaminsTitle": "Vitamins & Supplements",
+      "vitaminsText": "Essential vitamins and minerals for optimal health.",
+      "qualityTitle": "Quality Assurance",
+      "qualityText": "Rigorous testing and quality control for safe medications.",
+      "companyTitle": "Innovation in Healthcare",
+      "companyText": "Our state-of-the-art research facilities and experienced team of scientists work tirelessly to develop breakthrough treatments that improve patient outcomes and quality of life.",
+      "researchTitle": "Cutting-edge Research",
+      "researchText": "Advanced pharmaceutical research & development",
+      "teamTitle": "Expert Team",
+      "teamText": "World-class scientists and researchers",
+      "safetyTitle": "Safety First",
+      "safetyText": "Rigorous testing and quality assurance",
+      "learnMore": "Learn More About Us"
+    },
+    "about": {
+      "title": "About As-Sunna",
+      "description": "We are a leading pharmaceutical company focused on improving health and quality of life through innovative medicines and accessible healthcare solutions worldwide.",
+      "missionTitle": "Our Mission",
+      "missionText": "To provide access to quality medicines and contribute to improving public health.",
+      "visionTitle": "Our Vision",
+      "visionText": "To become the leading pharmaceutical company in the region, known for innovative solutions and high quality standards.",
+      "valuesTitle": "Our Values",
+      "qualityExcellenceTitle": "Quality Excellence",
+      "qualityExcellenceText": "Committed to the highest standards of pharmaceutical quality and safety in every product we manufacture.",
+      "patientFocusTitle": "Patient Focus",
+      "patientFocusText": "Every decision we make is guided by our commitment to improving patient outcomes and well-being.",
+      "innovationTitle": "Innovation",
+      "innovationText": "Continuously advancing pharmaceutical science through research and development of breakthrough treatments.",
+      "historyTitle": "Our History",
+      "history1Title": "Company History",
+      "history1Text1": "Founded in 2018 in Namangan, Uzbekistan.",
+      "history1Text2": "Quickly gained popularity due to its high quality and customer-focused approach.",
+      "history2Title": "Main Activities",
+      "history2List1": "Focus on health-oriented products: dietary supplements, oils, and capsules.",
+      "history2List2": "Engages in clinical research and relies on scientific development.",
+      "history3Title": "Leadership Team",
+      "history3List1": "Rakhmatullo Mamadjanov — General Director",
+      "history3List2": "Otabek Urunbaev — Director",
+      "history3List3": "Nasimboy Dekhkonov — Chief Financial Officer",
+      "history4Title": "Product Range",
+      "history4Text": "Sesame oil, black seed oil, olive oil, as well as various capsules and supplements — all available without a prescription in pharmacies across Uzbekistan.",
+      "history5Title": "Formative Substances",
+      "history5Text": "The company uses scientifically proven bioactive ingredients, but does not manufacture prohibited or unusual chemical substances. All products are positioned as supplements and health-supporting oils."
+    },
+    "product": {
+    "title": "Products",
+    "description": "Assuna Farmatefical is a pharmaceutical company that specializes in producing high-quality and effective medicines. The company is dedicated to improving public health by ensuring its products meet strict quality standards, supporting innovation in treatment, and making reliable healthcare solutions accessible to the people who need them most.",
+    "detailsBtn": "Details",
+    "categories": "Categories",
+    "allProducts": "All products"
+  },
+    "common": {
+      "loading": "Loading..."
+    },
+    "contact": {
+      "title": "Contact Information",
+      "subtitle": "Get in touch with our team for any questions about our products or services.",
+      "form": {
+        "title": "Send us a Message",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "messagePlaceholder": "Tell us how we can help you...",
+        "sendButton": "Send Message",
+        "successMessage": "Message sent successfully!"
+      },
+      "address": {
+        "title": "Address",
+        "value": "Chilanzar, 9th Quarter, Building 12, Tashkent, Uzbekistan 100097"
+      },
+      "phone": {
+        "title": "Phone",
+        "values": [
+          "+998-88-254-00-01",
+          "+998-88-254-00-02",
+          "+998-88-254-00-03"
+        ]
+      },
+      "email": {
+        "title": "Email",
+        "value": "assuna01@gmail.com"
+      },
+      "hours": {
+        "title": "Working Hours",
+        "value": [
+          "Monday - Friday: 9:00 AM - 6:00 PM",
+          "Saturday: 9:00 AM - 1:00 PM",
+          "Sunday: Closed"
+        ]
+      }
+    }
+  }

@@ -1,0 +1,125 @@
+// Variables
+$primary-color: #0077ff;
+$primary-color-hover: #005ecb;
+$text-color: #333;
+$label-color: #555;
+$bg-color: #f0f2f5;
+$card-bg: #fff;
+$border-color: #e0e0e0;
+$shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+
+.login-big {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  background: $bg-color;
+  padding: 20px;
+}
+
+.login-card {
+  display: flex;
+  background-color: $card-bg;
+  border-radius: 16px;
+  box-shadow: $shadow;
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    max-width: 400px;
+  }
+}
+
+.login-image {
+  flex: 1;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+
+  img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+}
+
+.login-form {
+  flex: 1;
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: $text-color;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    // Новая структура для каждого поля формы
+    div {
+      display: flex;
+      flex-direction: column;
+      
+      label {
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: $label-color;
+      }
+      
+      input {
+        padding: 12px 15px;
+        font-size: 16px;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+        }
+      }
+    }
+
+    button {
+      padding: 12px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: $primary-color;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.1s;
+      
+      &:hover {
+        background-color: $primary-color-hover;
+      }
+      
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+}
