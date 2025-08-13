@@ -63,6 +63,9 @@ const Home = () => {
       </div>
       {/* About Card End */}
 
+
+      
+
       {/* Company Start */}
       <div className="company">
         <div className="company-content">
