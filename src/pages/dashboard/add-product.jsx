@@ -28,7 +28,7 @@ const AddProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/categories');
+        const res = await axios.get('https://backend-assuna-test.onrender.com/api/categories');
         setCategories(res.data || []);
       } catch (err) {
         console.error('Ошибка при загрузке категорий:', err);
