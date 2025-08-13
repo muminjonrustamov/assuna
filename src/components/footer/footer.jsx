@@ -10,6 +10,11 @@ import './footer.scss';
 const Footer = () => {
   const { t } = useTranslation();
 
+  // Данные контактов
+  const email = "info@example.com";
+  const phone = "+1234567890";
+  const location = "Moscow, Russia";
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -22,19 +27,32 @@ const Footer = () => {
         {/* Center Section: Contact Info */}
         <div className="footer-section center">
           <h3>{t('footer.contact')}</h3>
-          <div className="contact-item"><FaLocationDot /> {t('footer.location')}</div>
-          <div className="contact-item"><FaPhoneAlt /> {t('footer.phone')}</div>
-          <div className="contact-item"><MdEmail /> {t('footer.email')}</div>
+          <div className="contact-item">
+  <FaLocationDot />{" "}
+  <a
+    href="https://www.google.com/maps/search/?api=1&query=Chilanzar,+9th+Quarter,+Building+12,+Tashkent,+Uzbekistan+100097"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {t('footer.location')}
+  </a>
+</div>
+          <div className="contact-item">
+            <FaPhoneAlt /> <a href={`tel:${phone}`}>{t('footer.phone')}</a>
+          </div>
+          <div className="contact-item">
+            <MdEmail /> <a href={`mailto:${email}`}>{t('footer.email')}</a>
+          </div>
         </div>
 
         {/* Right Section: About Company Links */}
         <div className="footer-section right">
           <h3>{t('footer.navigation')}</h3>
           <ul>
-            <li><Link to="/">{t('nav.home')}</Link></li>
-            <li><Link to="/about">{t('nav.about')}</Link></li>
-            <li><Link to="/product">{t('nav.product')}</Link></li>
-            <li><Link to="/contact">{t('nav.contact')}</Link></li>
+            <li><Link className='footerlink' to="/">{t('nav.home')}</Link></li>
+            <li><Link className='footerlink' to="/about">{t('nav.about')}</Link></li>
+            <li><Link className='footerlink' to="/product">{t('nav.product')}</Link></li>
+            <li><Link className='footerlink' to="/contact">{t('nav.contact')}</Link></li>
           </ul>
         </div>
       </div>

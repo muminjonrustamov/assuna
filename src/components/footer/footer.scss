@@ -20,6 +20,10 @@
     flex: 1;
     min-width: 250px;
 
+    .footerlink{
+      font-size: 20px;
+    }
+
     h3 {
       color: orangered;
       font-size: 1.3rem;
@@ -39,14 +43,8 @@
         margin-bottom: 10px;
 
         a {
-          font-size: 1.2rem;
-          color: #1a1a1a;
-          text-decoration: none;
-          transition: color 0.3s;
-
-          &:hover {
-            color: #f7941d;
-          }
+          text-decoration: none; /* убираем нижнюю линию */
+          color: initial;
         }
       }
     }
@@ -58,6 +56,11 @@
       margin-bottom: 10px;
       font-size: 1.2rem;
       color: #1a1a1a;
+
+      a {
+        text-decoration: none; /* убираем нижнюю линию */
+        color: initial;
+      }
 
       svg {
         color: #00b4c6;
