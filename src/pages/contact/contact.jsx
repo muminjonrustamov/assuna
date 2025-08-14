@@ -9,13 +9,9 @@ const ContactPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Тут логика отправки данных на сервер или email
-
-    // После успешной отправки:
     toast.success(t('contact.form.successMessage'), {
       position: 'top-right',
-      autoClose: 3000, // 3 секунды
+      autoClose: 3000, 
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -87,7 +83,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-      
+
       <ToastContainer />
     </div>
   );
