@@ -87,8 +87,7 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Контейнер для уведомлений */}
+      
       <ToastContainer />
     </div>
   );

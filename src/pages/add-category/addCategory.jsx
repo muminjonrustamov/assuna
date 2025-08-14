@@ -5,7 +5,7 @@ import './addCategory.scss';
 import axios from 'axios';
 
 const AddCategory = () => {
-  const navigate = useNavigate(); // 🛠️ добавлено
+  const navigate = useNavigate(); 
 
   const [category, setCategory] = useState({
     name_en: '',
@@ -16,13 +16,12 @@ const AddCategory = () => {
     description_uz: '',
   });
 
-  const [categories, setCategories] = useState([]); // 🛠️ добавлено
+  const [categories, setCategories] = useState([]); 
 
-  // Загрузка списка категорий
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/categories');
+        const res = await axios.get('https://backend-assuna-1.onrender.com/api/categories');
         setCategories(res.data);
       } catch (error) {
         console.error('Ошибка при загрузке категорий:', error);
@@ -44,10 +43,10 @@ const AddCategory = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5000/api/categories', category);
+      const res = await axios.post('https://backend-assuna-1.onrender.com/api/categories', category);
       console.log('✅ Категория добавлена:', res.data);
 
-      navigate('/product'); // 🛠️ перенаправление
+      navigate('/product');
     } catch (error) {
       console.error('❌ Ошибка при добавлении категории:', error);
       if (error.response) {
@@ -66,7 +65,6 @@ const AddCategory = () => {
 
   return (
     <div className="add-category">
-      {/* Назад кнопка */}
       <button className="back-button" onClick={() => navigate(-1)}>
         <FaArrowLeft /> back
       </button>

@@ -38,12 +38,10 @@ const Dashboard = () => {
   const getCategoryName = (cat) => {
     if (!cat) return '-';
 
-    // Если пришёл объект
     if (typeof cat === 'object' && cat[`name_${currentLang}`]) {
       return cat[`name_${currentLang}`];
     }
 
-    // Если пришёл ID
     const found = categories.find(c => c._id === cat);
     return found ? found[`name_${currentLang}`] : '-';
   };
