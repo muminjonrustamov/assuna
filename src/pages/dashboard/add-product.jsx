@@ -28,7 +28,7 @@ const AddProduct = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('https://backend-assuna-test.onrender.com/api/categories');
+        const res = await axios.get('https://backend-assuna-1.onrender.com/api/categories');
         setCategories(res.data || []);
       } catch (err) {
         console.error('Ошибка при загрузке категорий:', err);
@@ -76,7 +76,7 @@ const AddProduct = () => {
       ...formData
     };
 
-    const res = await axios.post('http://localhost:5000/api/products', productData);
+    const res = await axios.post('https://backend-assuna-1.onrender.com/api/products', productData);
     console.log('✅ Продукт добавлен:', res.data);
 
     navigate('/dashboard');
