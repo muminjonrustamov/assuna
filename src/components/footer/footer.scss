@@ -20,7 +20,7 @@
     flex: 1;
     min-width: 250px;
 
-    .footerlink{
+    .footerlink {
       font-size: 20px;
     }
 
@@ -43,7 +43,7 @@
         margin-bottom: 10px;
 
         a {
-          text-decoration: none; /* убираем нижнюю линию */
+          text-decoration: none;
           color: initial;
         }
       }
@@ -58,12 +58,28 @@
       color: #1a1a1a;
 
       a {
-        text-decoration: none; /* убираем нижнюю линию */
+        text-decoration: none;
         color: initial;
       }
 
       svg {
-        color: #00b4c6;
+        color: orangered;
+      }
+    }
+
+    .social-icons {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+
+      a {
+        font-size: 1.5rem;
+        color: orangered;
+        transition: transform 0.2s;
+
+        &:hover {
+          transform: scale(1.2);
+        }
       }
     }
   }
