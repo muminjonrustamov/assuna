@@ -19,7 +19,7 @@ const Home = () => {
   useEffect(() => {
     const el = aboutVideoRef.current;
     if (!el) return;
-    
+
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
       el.pause();
@@ -34,10 +34,12 @@ const Home = () => {
             el.play().finally(() => {
               window.removeEventListener("scroll", tryPlay);
               window.removeEventListener("touchstart", tryPlay);
+              window.removeEventListener("click", tryPlay);
             });
           };
           window.addEventListener("scroll", tryPlay, { once: true });
           window.addEventListener("touchstart", tryPlay, { once: true });
+          window.addEventListener("click", tryPlay, { once: true });
         });
       }
     };
@@ -59,11 +61,42 @@ const Home = () => {
     return () => io.disconnect();
   }, []);
 
+  const handleShowcaseCanPlay = (e) => {
+    const v = e.currentTarget;
+    const p = v.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(() => {
+        const retry = () => {
+          v.play().finally(() => {
+            window.removeEventListener("scroll", retry);
+            window.removeEventListener("touchstart", retry);
+            window.removeEventListener("click", retry);
+          });
+        };
+        window.addEventListener("scroll", retry, { once: true });
+        window.addEventListener("touchstart", retry, { once: true });
+        window.addEventListener("click", retry, { once: true });
+      });
+    }
+  };
+
   return (
     <>
       {/* Showcase start */}
       <div className="showcase">
-        <video src={Video} autoPlay loop muted playsInline />
+        <video
+          className="showcase-video"
+          src={Video}
+          muted
+          playsInline
+          autoPlay
+          loop
+          preload="metadata"
+          onCanPlay={handleShowcaseCanPlay}
+          onError={(e) => {
+            e.currentTarget.closest('.showcase')?.classList.add('video-error');
+          }}
+        />
         <div className="overlay"></div>
         <div className="showcase-content">
           <h1>{t("home.brand")}</h1>
