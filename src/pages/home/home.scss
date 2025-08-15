@@ -57,51 +57,6 @@
       flex-direction: row;
       align-items: center;
       gap: 25px;
-//       .btn1 {
-//         padding: 15px 40px;
-//         background-color: orangered;
-//         display: flex;
-//         flex-direction: row;
-//         align-items: center;
-//         gap: 10px;
-//         border-radius: 10px;
-//         cursor: pointer;
-//         transition: .5s;
-//         &:hover{
-//             transform: scale(1.1);
-//             transition: .5s;
-//         }
-//         a{
-//             color: #fff;
-//             text-decoration: none;
-//             font-weight: 600;
-//             font-size: 20px;
-//         }
-//         .arrow {
-//             display: inline-block;
-//             animation: bounceArrow .5s infinite alternate ease-in-out;
-//             font-size: 20px;
-//             color: #fff;
-//         }
-//       }
-//      .btn2 a {
-//   padding: 13px 48px;
-//   background-color: #ffffff89;
-//   border: 2px solid #fff;
-//   color: #fff;
-//   text-decoration: none;
-//   font-weight: 600;
-//   font-size: 20px;
-//   border-radius: 10px;
-//   transition: .5s;
-//   display: inline-block;
-//   text-align: center;
-
-//   &:hover {
-//     transform: scale(1.1);
-//     background-color: rgba(255, 255, 255, 0.15); // мягкий фон при ховере
-//   }
-// }
 .btn1 {
   padding: 15px 40px;
   background-color: orangered;
@@ -455,8 +410,8 @@
     gap: 50px;
     .company-left{
       video{
-        width: 700px;
-        height: 450px;
+        width: 750px;
+        height:450px;
         border-radius: 10px;
       }
     }

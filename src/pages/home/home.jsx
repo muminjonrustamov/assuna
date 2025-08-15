@@ -9,16 +9,61 @@ import { FaPills } from "react-icons/fa";
 import { SlEnergy } from "react-icons/sl";
 import { TbUsers } from "react-icons/tb";
 import { AiOutlineSafety } from "react-icons/ai";
+import { useEffect, useRef } from "react";
 import "./home.scss";
 
 const Home = () => {
   const { t } = useTranslation();
+  const aboutVideoRef = useRef(null);
+
+  useEffect(() => {
+    const el = aboutVideoRef.current;
+    if (!el) return;
+    
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      el.pause();
+      return;
+    }
+
+    const handlePlay = () => {
+      const p = el.play();
+      if (p && typeof p.catch === "function") {
+        p.catch(() => {
+          const tryPlay = () => {
+            el.play().finally(() => {
+              window.removeEventListener("scroll", tryPlay);
+              window.removeEventListener("touchstart", tryPlay);
+            });
+          };
+          window.addEventListener("scroll", tryPlay, { once: true });
+          window.addEventListener("touchstart", tryPlay, { once: true });
+        });
+      }
+    };
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            handlePlay();
+          } else {
+            el.pause();
+          }
+        });
+      },
+      { threshold: [0, 0.5, 1] }
+    );
+
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
     <>
       {/* Showcase start */}
       <div className="showcase">
-        <video src={Video} autoPlay loop muted />
+        <video src={Video} autoPlay loop muted playsInline />
         <div className="overlay"></div>
         <div className="showcase-content">
           <h1>{t("home.brand")}</h1>
@@ -63,14 +108,17 @@ const Home = () => {
       </div>
       {/* About Card End */}
 
-
-      
-
       {/* Company Start */}
       <div className="company">
         <div className="company-content">
           <div className="company-left">
-            <video controls>
+            <video
+              ref={aboutVideoRef}
+              muted
+              playsInline
+              preload="metadata"
+              loop
+            >
               <source src={AboutVideo} type="video/mp4" />
             </video>
           </div>
