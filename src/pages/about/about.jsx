@@ -12,64 +12,66 @@ const About = () => {
 
   return (
     <div className="about-big">
+      {/* Hero section */}
       <div className="about-text">
         <h1>{t("about.title")}</h1>
         <p>{t("about.description")}</p>
         <img src={Laboratory} alt="laboratory" />
       </div>
 
+      {/* Mission & Vision */}
       <div className="about-box">
         <div className="about-boxes">
           <div className="about-box-icon">
-            <FiTarget className='aboutbox1' />
-            <h1>{t("about.missionTitle")}</h1>
+            <FiTarget className='aboutbox-icon blue' />
+            <h2>{t("about.missionTitle")}</h2>
           </div>
           <p>{t("about.missionText")}</p>
         </div>
 
-        <div className="about-boxes1">
+        <div className="about-boxes">
           <div className="about-box-icon">
-            <FaEye className='aboutbox2' />
-            <h1>{t("about.visionTitle")}</h1>
+            <FaEye className='aboutbox-icon red' />
+            <h2>{t("about.visionTitle")}</h2>
           </div>
           <p>{t("about.visionText")}</p>
         </div>
       </div>
 
+      {/* Values section */}
       <div className="value-section">
-      <h2 className="value-title">{t("about.valuesTitle")}</h2>
-      <div className="value-cards">
-        <div className="value-card">
-          <PiMedalBold className="value-icon blue" />
-          <h3>{t("about.qualityExcellenceTitle")}</h3>
-          <p>{t("about.qualityExcellenceText")}</p>
-        </div>
-        <div className="value-card">
-          <TbUsers className="value-icon red" />
-          <h3>{t("about.patientFocusTitle")}</h3>
-          <p>{t("about.patientFocusText")}</p>
-        </div>
-        <div className="value-card">
-          <FiTarget className="value-icon blue" />
-          <h3>{t("about.innovationTitle")}</h3>
-          <p>{t("about.innovationText")}</p>
+        <h2 className="value-title">{t("about.valuesTitle")}</h2>
+        <div className="value-cards">
+          <div className="value-card">
+            <PiMedalBold className="value-icon blue" />
+            <h3>{t("about.qualityExcellenceTitle")}</h3>
+            <p>{t("about.qualityExcellenceText")}</p>
+          </div>
+          <div className="value-card">
+            <TbUsers className="value-icon red" />
+            <h3>{t("about.patientFocusTitle")}</h3>
+            <p>{t("about.patientFocusText")}</p>
+          </div>
+          <div className="value-card">
+            <FiTarget className="value-icon blue" />
+            <h3>{t("about.innovationTitle")}</h3>
+            <p>{t("about.innovationText")}</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    {/*  */}
-
+      {/* History section */}
       <div className="about-story">
-        <h1>{t("about.historyTitle")}</h1>
+        <h2>{t("about.historyTitle")}</h2>
 
         <div className="card history">
-          <h2><span>📖</span> {t("about.history1Title")}</h2>
+          <h3><span>📖</span> {t("about.history1Title")}</h3>
           <p>{t("about.history1Text1")}</p>
           <p>{t("about.history1Text2")}</p>
         </div>
 
         <div className="card direction">
-          <h2><span>🧪</span> {t("about.history2Title")}</h2>
+          <h3><span>🧪</span> {t("about.history2Title")}</h3>
           <ul>
             <li>{t("about.history2List1")}</li>
             <li>{t("about.history2List2")}</li>
@@ -77,7 +79,7 @@ const About = () => {
         </div>
 
         <div className="card team">
-          <h2><span>👥</span> {t("about.history3Title")}</h2>
+          <h3><span>👥</span> {t("about.history3Title")}</h3>
           <ul>
             <li>{t("about.history3List1")}</li>
             <li>{t("about.history3List2")}</li>
@@ -86,12 +88,12 @@ const About = () => {
         </div>
 
         <div className="card products">
-          <h2><span>🧴</span> {t("about.history4Title")}</h2>
+          <h3><span>🧴</span> {t("about.history4Title")}</h3>
           <p>{t("about.history4Text")}</p>
         </div>
 
         <div className="card substances">
-          <h2><span>✅</span> {t("about.history5Title")}</h2>
+          <h3><span>✅</span> {t("about.history5Title")}</h3>
           <p>{t("about.history5Text")}</p>
         </div>
       </div>
