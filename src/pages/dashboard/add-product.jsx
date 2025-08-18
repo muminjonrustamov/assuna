@@ -22,7 +22,7 @@ const AddProduct = () => {
     description_ru: '',
     description_uz: '',
     category: '',
-    images: [], // ✅ фикс — пустой массив
+    images: [], 
   });
 
   useEffect(() => {
@@ -70,13 +70,20 @@ const AddProduct = () => {
       const results = await Promise.all(files.map(f => readFileAsDataURL(f)));
       setFormData(prevData => ({
         ...prevData,
-        images: [...prevData.images, ...results], // ✅ добавляем новые картинки
+        images: [...prevData.images, ...results],
       }));
     } catch (err) {
       console.error('Ошибка чтения файлов:', err);
     } finally {
-      e.target.value = ''; // сбрасываем input, чтобы можно было повторно выбрать те же файлы
+      e.target.value = '';
     }
+  };
+
+  const handleRemoveImage = (index) => {
+    setFormData(prevData => ({
+      ...prevData,
+      images: prevData.images.filter((_, i) => i !== index)
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -201,18 +208,30 @@ const AddProduct = () => {
               </div>
 
               {formData.images.length > 0 && (
-                <div className="preview-wrapper">
-                  {formData.images.map((img, idx) => (
-                    <div className="image-box" key={idx}>
-                      <img
-                        src={img}
-                        alt={`preview-${idx}`}
-                        className="image-preview"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
+  <div className="preview-wrapper">
+    {formData.images.map((img, idx) => (
+      <div className="image-box" key={idx}>
+        <img
+          src={img}
+          alt={`preview-${idx}`}
+          className="image-preview"
+        />
+        <button
+          type="button"
+          className="remove-image"
+          onClick={() => {
+            setFormData(prev => ({
+              ...prev,
+              images: prev.images.filter((_, i) => i !== idx)
+            }));
+          }}
+        >
+          ×
+        </button>
+      </div>
+    ))}
+  </div>
+)}
             </div>
 
             <button type="submit">Save Product</button>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './product.scss';
-import defaultImage from '../../images/medicine.webp';
 import api from '../../API/api';
 import { useTranslation } from 'react-i18next';
 import { FaArrowRight } from 'react-icons/fa';
@@ -24,7 +23,14 @@ const Product = () => {
           api.get('/products'),
           api.get('/categories'),
         ]);
-        setProducts(prodRes.data || []);
+
+        // Нормализуем массив images для всех продуктов
+        const normalizedProducts = (prodRes.data || []).map(prod => ({
+          ...prod,
+          images: Array.isArray(prod.images) ? prod.images : [],
+        }));
+
+        setProducts(normalizedProducts);
         setCategories(catRes.data || []);
       } catch (err) {
         console.error('Failed to fetch:', err);
@@ -33,13 +39,18 @@ const Product = () => {
         setLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
   const getCategoryName = (categoryId) => {
     const category = categories.find((cat) => cat._id === categoryId);
     if (!category) return '';
-    return lang === 'uz' ? category.name_uz : lang === 'ru' ? category.name_ru : category.name_en;
+    return lang === 'uz'
+      ? category.name_uz
+      : lang === 'ru'
+      ? category.name_ru
+      : category.name_en;
   };
 
   const filteredProducts =
@@ -61,6 +72,7 @@ const Product = () => {
             <span className="loading-text">{t('common.loading')}</span>
           </div>
         )}
+
         {error && <p style={{ color: 'red' }}>{error}</p>}
 
         {!loading && (
@@ -105,36 +117,58 @@ const Product = () => {
               {filteredProducts.length === 0 ? (
                 <p>{t('product.noProducts')}</p>
               ) : (
-                filteredProducts.map((prod, index) => (
-                  <div key={prod._id || index} className="product-card">
-                    <img
-                      src={prod.image || defaultImage}
-                      alt={prod.name?.en || 'Product'}
-                    />
-                    <div className="card-content">
-                      <h3>
-                        {lang === 'uz'
-                          ? prod.name_uz
-                          : lang === 'ru'
-                          ? prod.name_ru
-                          : prod.name_en}
-                      </h3>
+                filteredProducts.map((prod, index) => {
+                  // Берём первую доступную картинку: из массива images или поля image
+                  let firstImage = null;
+                  if (Array.isArray(prod.images) && prod.images.length > 0) {
+                    firstImage = prod.images[0];
+                  } else if (prod.image) {
+                    firstImage = prod.image;
+                  }
 
-                      <p className="product-category">
-                        {getCategoryName(prod.categoryId || prod.category)}
-                      </p>
+                  return (
+                    <div key={prod._id || index} className="product-card">
+                      {firstImage ? (
+                        <img
+                          src={firstImage}
+                          alt={
+                            lang === 'uz'
+                              ? prod.name_uz
+                              : lang === 'ru'
+                              ? prod.name_ru
+                              : prod.name_en || 'Product'
+                          }
+                        />
+                      ) : (
+                        <div className="no-image-placeholder">No Image</div>
+                      )}
 
-                      <div className="buttons">
-                        <button
-                          className="details-btn"
-                          onClick={() => navigate(`/product/${prod._id}`)}
-                        >
-                          {t('product.detailsBtn')} <FaArrowRight className="arrow-icon" />
-                        </button>
+                      <div className="card-content">
+                        <h3>
+                          {lang === 'uz'
+                            ? prod.name_uz
+                            : lang === 'ru'
+                            ? prod.name_ru
+                            : prod.name_en}
+                        </h3>
+
+                        <p className="product-category">
+                          {getCategoryName(prod.categoryId || prod.category)}
+                        </p>
+
+                        <div className="buttons">
+                          <button
+                            className="details-btn"
+                            onClick={() => navigate(`/product/${prod._id}`)}
+                          >
+                            {t('product.detailsBtn')}{' '}
+                            <FaArrowRight className="arrow-icon" />
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))
+                  );
+                })
               )}
             </div>
           </div>

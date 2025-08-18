@@ -55,22 +55,22 @@
   padding: 20px;
   margin-bottom: 25px;
   background-color: #fafafa;
-}
 
-.form-language-section h3 {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-}
+  h3 {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
 
-.flag-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 10px;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .flag-icon {
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
 }
 
 /* Общие стили для полей ввода */
@@ -101,21 +101,21 @@ textarea {
 
 .form-group {
   margin-bottom: 25px;
-}
 
-.form-group label {
-  display: block;
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 8px;
-  font-weight: 600;
+  label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
 }
 
 /* Кнопка сохранения */
 button[type="submit"] {
   width: 100%;
   padding: 15px;
-  background-color:orangered;
+  background-color: orangered;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -138,41 +138,80 @@ button[type="submit"] {
   padding: 15px;
   cursor: pointer;
   transition: border-color 0.3s ease;
+
   &:hover {
     border-color: #007bff;
   }
-}
 
-.upload-button {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  .upload-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 
-  &:hover {
-    background-color: #0056b3;
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  input[type="file"] {
+    display: none;
   }
 }
 
-input[type="file"] {
-  display: none;
-}
-
+/* Превью изображений */
 .preview-wrapper {
-  margin-top: 20px;
-  text-align: center;
-}
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 
-.image-preview {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  .image-box {
+    position: relative;
+    display: inline-block;
+
+    .image-preview {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #3b82f6;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s;
+      
+      &:hover {
+        transform: scale(1.08);
+      }
+    }
+
+    .remove-image {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background 0.2s;
+
+      &:hover {
+        background-color: #b91c1c;
+      }
+    }
+  }
 }
 
 /* Сообщение о загрузке */

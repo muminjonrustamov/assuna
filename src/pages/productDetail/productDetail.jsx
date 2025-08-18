@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './productDetail.scss';
-import defaultImage from '../../images/medicine.webp';
 import api from '../../API/api';
 
 const ProductDetail = () => {
@@ -15,6 +14,7 @@ const ProductDetail = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const getCategoryName = (categoryId) => {
     const category = categories.find(cat => cat._id === categoryId);
@@ -44,6 +44,7 @@ const ProductDetail = () => {
 
         setProduct(actualProduct);
         setCategories(categoriesRes.data || []);
+        setSelectedImage(actualProduct.image || (actualProduct.images?.[0] ?? null));
       } catch (err) {
         console.error('❌ Failed to fetch product:', err);
         setError(t('productNotFound') || 'Product not found');
@@ -70,6 +71,10 @@ const ProductDetail = () => {
     );
   }
 
+  const images = product.images && product.images.length > 0
+    ? [product.image, ...product.images].filter(Boolean)
+    : product.image ? [product.image] : [];
+
   return (
     <div className="product-detail">
       <button className="back-btn" onClick={() => navigate('/product')}>
@@ -77,11 +82,27 @@ const ProductDetail = () => {
       </button>
 
       <div className="detail-card">
-        <img
-          src={product.image || defaultImage}
-          alt={product[`name_${lang}`] || product.name_en || 'Product'}
-          className="detail-image"
-        />
+        {images.length > 0 && (
+          <div className="images-section">
+            <img
+              src={selectedImage}
+              alt={product[`name_${lang}`] || product.name_en}
+              className="main-image"
+            />
+            <div className="thumbnail-row">
+              {images.map((img, idx) => (
+                <img
+                  key={idx}
+                  src={img}
+                  alt={`Thumbnail ${idx}`}
+                  className={`thumbnail ${selectedImage === img ? 'active' : ''}`}
+                  onClick={() => setSelectedImage(img)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="detail-content">
           <h2 id="product-name">
             {product[`name_${lang}`] || product.name_en}

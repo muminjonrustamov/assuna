@@ -20,7 +20,7 @@ const EditProduct = () => {
   const [formData, setFormData] = useState({
     name: { en: "", ru: "", uz: "" },
     description: { en: "", ru: "", uz: "" },
-    image: "",
+    images: [],
     category: ""
   });
 
@@ -45,7 +45,7 @@ const EditProduct = () => {
             ru: product.description_ru || "",
             uz: product.description_uz || ""
           },
-          image: product.image || "",
+          images: product.images || [],
           category: product.category || ""
         });
 
@@ -78,18 +78,32 @@ const EditProduct = () => {
     }));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
+  const handleImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    const readers = files.map(file => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    });
+
+    Promise.all(readers)
+      .then((images) => {
         setFormData((prev) => ({
           ...prev,
-          image: reader.result
+          images: [...prev.images, ...images]
         }));
-      };
-      reader.readAsDataURL(file);
-    }
+      })
+      .catch((err) => console.error("Ошибка при загрузке изображений:", err));
+  };
+
+  const handleRemoveImage = (index) => {
+    setFormData((prev) => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index)
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -102,7 +116,7 @@ const EditProduct = () => {
         description_en: formData.description.en,
         description_ru: formData.description.ru,
         description_uz: formData.description.uz,
-        image: formData.image,
+        images: formData.images,
         category: formData.category
       };
 
@@ -184,26 +198,37 @@ const EditProduct = () => {
               </select>
             </div>
 
-            {/* Image */}
+            {/* Images */}
             <div className="form-group">
-              <label>Image:</label>
+              <label>Images:</label>
               <div className="custom-file-upload">
                 <label htmlFor="fileUpload" className="upload-button">
-                  {formData.image ? "Change Image" : "Upload Image"}
+                  Upload Images
                 </label>
                 <input
                   id="fileUpload"
                   type="file"
                   accept="image/*"
-                  onChange={handleImageChange}
+                  multiple
+                  onChange={handleImagesChange}
                 />
               </div>
-              {formData.image && (
-                <div className="preview-wrapper">
-                  <img src={formData.image} alt="Preview" className="image-preview" />
-                </div>
-              )}
+              <div className="preview-wrapper">
+                {formData.images.map((img, index) => (
+                  <div key={index} className="image-box">
+                    <img src={img} alt={`Preview ${index}`} className="image-preview" />
+                    <button
+                      type="button"
+                      className="remove-image"
+                      onClick={() => handleRemoveImage(index)}
+                    >
+                      ❌
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
+
             <button type="submit">💾 Save Changes</button>
           </form>
         </div>
