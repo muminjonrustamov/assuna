@@ -10,7 +10,7 @@ import UZFlag from '../../flags/uz.png';
 
 const AddProduct = () => {
   const { i18n } = useTranslation();
-  const lang = i18n.language;
+  const lang = i18n.language || 'en';
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
 
@@ -21,8 +21,8 @@ const AddProduct = () => {
     description_en: '',
     description_ru: '',
     description_uz: '',
-    category: '', 
-    image: '', 
+    category: '',
+    images: [], // ✅ фикс — пустой массив
   });
 
   useEffect(() => {
@@ -54,47 +54,51 @@ const AddProduct = () => {
     }));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
+  const readFileAsDataURL = (file) =>
+    new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setFormData((prevData) => ({
-          ...prevData,
-          image: reader.result,
-        }));
-      };
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
       reader.readAsDataURL(file);
+    });
+
+  const handleImageChange = async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
+
+    try {
+      const results = await Promise.all(files.map(f => readFileAsDataURL(f)));
+      setFormData(prevData => ({
+        ...prevData,
+        images: [...prevData.images, ...results], // ✅ добавляем новые картинки
+      }));
+    } catch (err) {
+      console.error('Ошибка чтения файлов:', err);
+    } finally {
+      e.target.value = ''; // сбрасываем input, чтобы можно было повторно выбрать те же файлы
     }
   };
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  try {
-    const productData = {
-      ...formData
-    };
+    try {
+      const productData = { ...formData };
+      console.log("📦 Отправляем продукт:", productData);
 
-    const res = await axios.post('https://backend-assuna-1.onrender.com/api/products', productData);
-    console.log('✅ Продукт добавлен:', res.data);
+      const res = await axios.post('https://backend-assuna-1.onrender.com/api/products', productData);
+      console.log('✅ Продукт добавлен:', res.data);
 
-    navigate('/dashboard');
-  } catch (error) {
-    console.error('❌ Ошибка при добавлении продукта:', error);
-    if (error.response) {
-      console.error('🧾 Ответ от сервера:', error.response.data);
-      console.error('🔢 Статус:', error.response.status);
-      console.error('📋 Заголовки:', error.response.headers);
-    } else if (error.request) {
-      console.error('📡 Запрос был отправлен, но ответа нет:', error.request);
-    } else {
-      console.error('💥 Ошибка при настройке запроса:', error.message);
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('❌ Ошибка при добавлении продукта:', error);
+      if (error.response) {
+        console.error('🧾 Ответ от сервера:', error.response.data);
+        console.error('🔢 Статус:', error.response.status);
+      }
+      alert('Ошибка при сохранении продукта.');
     }
-
-    alert('Ошибка при сохранении продукта.');
-  }
-};
+  };
 
   return (
     <div className="add-product-center">
@@ -180,23 +184,33 @@ const AddProduct = () => {
               </select>
             </div>
 
-            {/* Image Upload */}
+            {/* Images */}
             <div className="form-group">
-              <label>Image:</label>
+              <label>Images:</label>
               <div className="custom-file-upload">
                 <label htmlFor="fileUpload" className="upload-button">
-                  {formData.image ? 'Change Image' : 'Upload Image'}
+                  {formData.images.length ? 'Add more images' : 'Upload Images'}
                 </label>
                 <input
                   id="fileUpload"
                   type="file"
                   accept="image/*"
+                  multiple
                   onChange={handleImageChange}
                 />
               </div>
-              {formData.image && (
+
+              {formData.images.length > 0 && (
                 <div className="preview-wrapper">
-                  <img src={formData.image} alt="preview" className="image-preview" />
+                  {formData.images.map((img, idx) => (
+                    <div className="image-box" key={idx}>
+                      <img
+                        src={img}
+                        alt={`preview-${idx}`}
+                        className="image-preview"
+                      />
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
