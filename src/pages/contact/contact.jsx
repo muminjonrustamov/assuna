@@ -3,19 +3,42 @@ import './contact.scss';
 import { useTranslation } from 'react-i18next';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import emailjs from 'emailjs-com';
 
 const ContactPage = () => {
   const { t } = useTranslation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    toast.success(t('contact.form.successMessage'), {
-      position: 'top-right',
-      autoClose: 3000, 
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true
+
+    // добавляем скрытое поле time с текущим временем
+    let timeInput = e.target.querySelector('input[name="time"]');
+    if (!timeInput) {
+      timeInput = document.createElement('input');
+      timeInput.type = 'hidden';
+      timeInput.name = 'time';
+      e.target.appendChild(timeInput);
+    }
+    timeInput.value = new Date().toLocaleString();
+
+    emailjs.sendForm(
+      'service_5l8pbr1',   // Ваш Service ID
+      'template_9l3tcfg',  // Ваш Template ID
+      e.target,
+      'iZY2uec3c5OqkSBdO'  // Ваш Public Key
+    )
+    .then(() => {
+      toast.success(t('contact.form.successMessage') || 'Сообщение отправлено!', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
+      e.target.reset();
+    })
+    .catch(() => {
+      toast.error(t('contact.form.errorMessage') || 'Ошибка при отправке письма', {
+        position: 'top-right',
+        autoClose: 3000,
+      });
     });
   };
 
@@ -31,22 +54,22 @@ const ContactPage = () => {
             <div className="form-row" style={{ gap: '6px' }}>
               <div className="form-group">
                 <label>{t('contact.form.firstName')}</label>
-                <input type="text" placeholder={t('contact.form.firstName')} />
+                <input type="text" name="firstname" placeholder={t('contact.form.firstName')} required />
               </div>
               <div className="form-group">
                 <label>{t('contact.form.lastName')}</label>
-                <input type="text" placeholder={t('contact.form.lastName')} />
+                <input type="text" name="lastname" placeholder={t('contact.form.lastName')} required />
               </div>
             </div>
 
             <div className="form-group">
               <label>{t('contact.form.email')}</label>
-              <input type="email" placeholder={t('contact.form.email')} />
+              <input type="email" name="email" placeholder={t('contact.form.email')} required />
             </div>
 
             <div className="form-group">
               <label>{t('contact.form.messagePlaceholder')}</label>
-              <textarea placeholder={t('contact.form.messagePlaceholder')}></textarea>
+              <textarea name="message" placeholder={t('contact.form.messagePlaceholder')} required></textarea>
             </div>
 
             <button type="submit">{t('contact.form.sendButton')}</button>
