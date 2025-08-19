@@ -54,7 +54,7 @@ const ProductDetail = () => {
     };
 
     fetchProduct();
-  }, [id, lang]);
+  }, [id, lang, t]);
 
   if (loading) {
     return <div className="product-detail"><p>Loading...</p></div>;
@@ -89,17 +89,19 @@ const ProductDetail = () => {
               alt={product[`name_${lang}`] || product.name_en}
               className="main-image"
             />
-            <div className="thumbnail-row">
-              {images.map((img, idx) => (
-                <img
-                  key={idx}
-                  src={img}
-                  alt={`Thumbnail ${idx}`}
-                  className={`thumbnail ${selectedImage === img ? 'active' : ''}`}
-                  onClick={() => setSelectedImage(img)}
-                />
-              ))}
-            </div>
+            {images.length > 1 && (
+              <div className="thumbnail-row">
+                {images.map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={img}
+                    alt={`Thumbnail ${idx}`}
+                    className={`thumbnail ${selectedImage === img ? 'active' : ''}`}
+                    onClick={() => setSelectedImage(img)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 

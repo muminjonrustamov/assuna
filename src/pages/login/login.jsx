@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    if (username === 'admin' && password === '1234') {
+    if (username === 'admin' && password === '12345') {
       const token = SHA256(username + password).toString();
       localStorage.setItem('token', token);
       navigate('/dashboard');
