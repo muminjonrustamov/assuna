@@ -11,7 +11,6 @@ const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // добавляем скрытое поле time с текущим временем
     let timeInput = e.target.querySelector('input[name="time"]');
     if (!timeInput) {
       timeInput = document.createElement('input');
@@ -22,10 +21,10 @@ const ContactPage = () => {
     timeInput.value = new Date().toLocaleString();
 
     emailjs.sendForm(
-      'service_5l8pbr1',   // Ваш Service ID
-      'template_9l3tcfg',  // Ваш Template ID
+      'service_5l8pbr1',
+      'template_9l3tcfg',
       e.target,
-      'iZY2uec3c5OqkSBdO'  // Ваш Public Key
+      'iZY2uec3c5OqkSBdO'
     )
     .then(() => {
       toast.success(t('contact.form.successMessage') || 'Сообщение отправлено!', {

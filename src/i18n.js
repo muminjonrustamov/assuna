@@ -21,7 +21,7 @@ i18n
         translation: translationUZ,
       },
     },
-    lng: savedLanguage, // ← здесь используется сохранённый язык
+    lng: savedLanguage,
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,
