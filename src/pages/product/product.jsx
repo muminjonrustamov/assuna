@@ -118,7 +118,6 @@ const Product = () => {
                 <p>{t('product.noProducts')}</p>
               ) : (
                 filteredProducts.map((prod, index) => {
-                  // Берём первую доступную картинку: из массива images или поля image
                   let firstImage = null;
                   if (Array.isArray(prod.images) && prod.images.length > 0) {
                     firstImage = prod.images[0];

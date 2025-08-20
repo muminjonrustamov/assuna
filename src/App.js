@@ -20,43 +20,43 @@ import ProtectedRoute from './components/protectedRoute/protectedRoute';
 import Layout from './Layout/Layout';
 
 function App() {
-  useEffect(() => {
-    if (window.__tawk_added) return;
-    window.__tawk_added = true;
+  // useEffect(() => {
+  //   if (window.__tawk_added) return;
+  //   window.__tawk_added = true;
 
-    window.Tawk_API = window.Tawk_API || {};
-    window.Tawk_LoadStart = new Date();
+  //   window.Tawk_API = window.Tawk_API || {};
+  //   window.Tawk_LoadStart = new Date();
 
-    const s1 = document.createElement('script');
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/689dc5e0664fee19271dfe55/1j2k4ptds';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    document.body.appendChild(s1);
+  //   const s1 = document.createElement('script');
+  //   s1.async = true;
+  //   s1.src = 'https://embed.tawk.to/689dc5e0664fee19271dfe55/1j2k4ptds';
+  //   s1.charset = 'UTF-8';
+  //   s1.setAttribute('crossorigin', '*');
+  //   document.body.appendChild(s1);
 
-    const interval = setInterval(() => {
-      if (window.Tawk_API && (window.Tawk_API.showWidget || window.Tawk_API.toggle || window.Tawk_API.maximize)) {
-        try {
-          if (window.Tawk_API.showWidget) window.Tawk_API.showWidget();
-          if (window.Tawk_API.maximize) {
-            setTimeout(() => {
-              try { window.Tawk_API.maximize(); } catch (e) {}
-            }, 300);
-          } else if (window.Tawk_API.toggle) {
-            setTimeout(() => {
-              try { window.Tawk_API.toggle(); } catch (e) {}
-            }, 300);
-          }
-        } catch (e) {
-        }
-        clearInterval(interval);
-      }
-    }, 500);
+  //   const interval = setInterval(() => {
+  //     if (window.Tawk_API && (window.Tawk_API.showWidget || window.Tawk_API.toggle || window.Tawk_API.maximize)) {
+  //       try {
+  //         if (window.Tawk_API.showWidget) window.Tawk_API.showWidget();
+  //         if (window.Tawk_API.maximize) {
+  //           setTimeout(() => {
+  //             try { window.Tawk_API.maximize(); } catch (e) {}
+  //           }, 300);
+  //         } else if (window.Tawk_API.toggle) {
+  //           setTimeout(() => {
+  //             try { window.Tawk_API.toggle(); } catch (e) {}
+  //           }, 300);
+  //         }
+  //       } catch (e) {
+  //       }
+  //       clearInterval(interval);
+  //     }
+  //   }, 500);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   return (
     <Routes>

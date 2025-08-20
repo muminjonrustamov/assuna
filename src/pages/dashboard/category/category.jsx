@@ -75,7 +75,7 @@ const Category = () => {
 
         <div className="category-table">
           {categories.length === 0 ? (
-            <p>No categories found.</p>
+            <p>Loading...</p>
           ) : (
             <>
               <table>
