@@ -1,4 +1,4 @@
-import Laboratory from '../../images/slider2.jpg';
+import Laboratory from '../../images/slider3.jpg';
 import { FiTarget } from "react-icons/fi";
 import { FaEye } from "react-icons/fa";
 import { PiMedalBold } from "react-icons/pi";
@@ -62,7 +62,6 @@ const About = () => {
         </div>
       </div>
 
-      {/* История */}
       <div className="about-story">
         <h2>{t("about.historyTitle")}</h2>
 
