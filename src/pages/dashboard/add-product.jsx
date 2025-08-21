@@ -117,7 +117,6 @@ const AddProduct = () => {
         <div className="add-product">
           <h2>Add Product</h2>
           <form onSubmit={handleSubmit}>
-            {/* English */}
             <div className="form-language-section">
               <h3><img src={USFlag} alt="English" className="flag-icon" /> English</h3>
               <input
@@ -137,7 +136,6 @@ const AddProduct = () => {
               />
             </div>
 
-            {/* Russian */}
             <div className="form-language-section">
               <h3><img src={RUFlag} alt="Russian" className="flag-icon" /> Русский</h3>
               <input
@@ -155,7 +153,6 @@ const AddProduct = () => {
               />
             </div>
 
-            {/* Uzbek */}
             <div className="form-language-section">
               <h3><img src={UZFlag} alt="Uzbek" className="flag-icon" /> O‘zbek</h3>
               <input
@@ -173,7 +170,6 @@ const AddProduct = () => {
               />
             </div>
 
-            {/* Category */}
             <div className="form-group">
               <label>Category:</label>
               <select
@@ -191,7 +187,6 @@ const AddProduct = () => {
               </select>
             </div>
 
-            {/* Images */}
             <div className="form-group">
               <label>Images:</label>
               <div className="custom-file-upload">

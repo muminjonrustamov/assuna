@@ -1,4 +1,4 @@
-import Laboratory from '../../images/laboratory.png';
+import Laboratory from '../../images/slider2.jpg';
 import { FiTarget } from "react-icons/fi";
 import { FaEye } from "react-icons/fa";
 import { PiMedalBold } from "react-icons/pi";
@@ -12,33 +12,35 @@ const About = () => {
 
   return (
     <div className="about-big">
-      {/* Hero section */}
       <div className="about-text">
         <h1>{t("about.title")}</h1>
         <p>{t("about.description")}</p>
-        <img src={Laboratory} alt="laboratory" />
       </div>
 
-      {/* Mission & Vision */}
-      <div className="about-box">
-        <div className="about-boxes">
-          <div className="about-box-icon">
-            <FiTarget className='aboutbox-icon blue' />
-            <h2>{t("about.missionTitle")}</h2>
-          </div>
-          <p>{t("about.missionText")}</p>
+      {/* Картинка + Mission/Vision */}
+      <div className="about-image-and-boxes">
+        <div className="about-image">
+          <img src={Laboratory} alt="laboratory" />
         </div>
-
-        <div className="about-boxes">
-          <div className="about-box-icon">
-            <FaEye className='aboutbox-icon red' />
-            <h2>{t("about.visionTitle")}</h2>
+        <div className="about-box">
+          <div className="about-boxes">
+            <div className="about-box-icon">
+              <FiTarget className='aboutbox-icon blue' />
+              <h2>{t("about.missionTitle")}</h2>
+            </div>
+            <p>{t("about.missionText")}</p>
           </div>
-          <p>{t("about.visionText")}</p>
+          <div className="about-boxes">
+            <div className="about-box-icon">
+              <FaEye className='aboutbox-icon red' />
+              <h2>{t("about.visionTitle")}</h2>
+            </div>
+            <p>{t("about.visionText")}</p>
+          </div>
         </div>
       </div>
 
-      {/* Values section */}
+      {/* Values */}
       <div className="value-section">
         <h2 className="value-title">{t("about.valuesTitle")}</h2>
         <div className="value-cards">
@@ -60,7 +62,7 @@ const About = () => {
         </div>
       </div>
 
-      {/* History section */}
+      {/* История */}
       <div className="about-story">
         <h2>{t("about.historyTitle")}</h2>
 
@@ -101,4 +103,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default About; 
