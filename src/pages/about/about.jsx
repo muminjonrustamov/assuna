@@ -17,7 +17,6 @@ const About = () => {
         <p>{t("about.description")}</p>
       </div>
 
-      {/* Картинка + Mission/Vision */}
       <div className="about-image-and-boxes">
         <div className="about-image">
           <img src={Laboratory} alt="laboratory" />
@@ -40,7 +39,6 @@ const About = () => {
         </div>
       </div>
 
-      {/* Values */}
       <div className="value-section">
         <h2 className="value-title">{t("about.valuesTitle")}</h2>
         <div className="value-cards">
