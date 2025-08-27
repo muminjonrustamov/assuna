@@ -54,7 +54,8 @@
 
       img {
         display: block;
-        width: 500px;
+        width: 100%;   
+        max-width: 500px;  
         height: auto;
         border-radius: 16px;
         box-shadow: 0 12px 24px rgba(0,0,0,0.1);
@@ -119,6 +120,7 @@
       }
     }
   }
+
   .value-section {
     width: 100%;
     background: #f9f9f9;
@@ -264,8 +266,11 @@
         max-width: 700px;
       }
 
-      .about-box {
-        align-items: stretch;
+      .about-box { align-items: stretch; }
+
+      .about-image img {
+        max-width: 100%;
+        width: 100%;
       }
     }
 
@@ -287,5 +292,20 @@
     .value-section .value-title { font-size: 1.8rem; }
 
     .about-story h2 { font-size: 1.8rem; }
+
+    .about-image-and-boxes {
+      padding: 0 8px;
+
+      .about-image,
+      .about-box {
+        max-width: 100%;
+        min-width: 0;
+      }
+      .about-image img {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 12px;
+      }
+    }
   }
 }
