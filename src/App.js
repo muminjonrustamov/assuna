@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import Home from './pages/home/home';
 import About from './pages/about/about';
@@ -19,7 +19,12 @@ import ProtectedRoute from './components/protectedRoute/protectedRoute';
 import Layout from './Layout/Layout';
 
 function App() {
+  const location = useLocation();
+
   useEffect(() => {
+    // Если мы на dashboard — не подключаем livechat
+    if (location.pathname.startsWith('/dashboard')) return;
+
     if (window.__tawk_added) return;
     window.__tawk_added = true;
 
@@ -34,20 +39,26 @@ function App() {
     document.body.appendChild(s1);
 
     const interval = setInterval(() => {
-      if (window.Tawk_API && (window.Tawk_API.showWidget || window.Tawk_API.toggle || window.Tawk_API.maximize)) {
+      if (
+        window.Tawk_API &&
+        (window.Tawk_API.showWidget || window.Tawk_API.toggle || window.Tawk_API.maximize)
+      ) {
         try {
           if (window.Tawk_API.showWidget) window.Tawk_API.showWidget();
           if (window.Tawk_API.maximize) {
             setTimeout(() => {
-              try { window.Tawk_API.maximize(); } catch (e) {}
+              try {
+                window.Tawk_API.maximize();
+              } catch (e) {}
             }, 300);
           } else if (window.Tawk_API.toggle) {
             setTimeout(() => {
-              try { window.Tawk_API.toggle(); } catch (e) {}
+              try {
+                window.Tawk_API.toggle();
+              } catch (e) {}
             }, 300);
           }
-        } catch (e) {
-        }
+        } catch (e) {}
         clearInterval(interval);
       }
     }, 500);
@@ -55,7 +66,7 @@ function App() {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [location.pathname]);
 
   return (
     <Routes>
