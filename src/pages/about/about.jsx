@@ -77,15 +77,6 @@ const About = () => {
           </ul>
         </div>
 
-        <div className="card team">
-          <h3><span>👥</span> {t("about.history3Title")}</h3>
-          <ul>
-            <li>{t("about.history3List1")}</li>
-            <li>{t("about.history3List2")}</li>
-            <li>{t("about.history3List3")}</li>
-          </ul>
-        </div>
-
         <div className="card products">
           <h3><span>🧴</span> {t("about.history4Title")}</h3>
           <p>{t("about.history4Text")}</p>
