@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import './addCategory.scss';
-import axios from 'axios';
+import { getCategories, createCategory } from '../../API/api';
 
 const AddCategory = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const [category, setCategory] = useState({
     name_en: '',
@@ -16,13 +16,13 @@ const AddCategory = () => {
     description_uz: '',
   });
 
-  const [categories, setCategories] = useState([]); 
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await axios.get('https://backend-assuna-1.onrender.com/api/categories');
-        setCategories(res.data);
+        const res = await getCategories();
+        setCategories(res || []);
       } catch (error) {
         console.error('Ошибка при загрузке категорий:', error);
       }
@@ -33,32 +33,17 @@ const AddCategory = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setCategory((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setCategory(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const res = await axios.post('https://backend-assuna-1.onrender.com/api/categories', category);
-      console.log('✅ Категория добавлена:', res.data);
-
+      const res = await createCategory(category);
+      console.log('✅ Категория добавлена:', res);
       navigate('/product');
     } catch (error) {
       console.error('❌ Ошибка при добавлении категории:', error);
-      if (error.response) {
-        console.error('🧾 Ответ от сервера:', error.response.data);
-        console.error('🔢 Статус:', error.response.status);
-        console.error('📋 Заголовки:', error.response.headers);
-      } else if (error.request) {
-        console.error('📡 Запрос был отправлен, но ответа нет:', error.request);
-      } else {
-        console.error('💥 Ошибка при настройке запроса:', error.message);
-      }
-
       alert('Ошибка при сохранении категории.');
     }
   };
