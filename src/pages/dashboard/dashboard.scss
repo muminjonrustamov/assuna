@@ -1,3 +1,6 @@
+/* =========================
+   Dashboard SCSS
+========================= */
 .dashboard-wrapper {
   display: flex;
   min-height: 100vh;
@@ -75,31 +78,24 @@
     font-weight: 600;
     color: #111827;
   }
-}
 
-/* Section header with add button */
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-  h2 {
-    font-size: 22px;
-    font-weight: 600;
-    margin: 0;
-  }
+    .add-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #1f2937;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
 
-  .add-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #1f2937;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #374151;
+      &:hover {
+        background-color: #374151;
+      }
     }
   }
 }
@@ -115,12 +111,14 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    table-layout: fixed;
 
     th, td {
-      padding: 14px;
+      padding: 16px;
       border-bottom: 1px solid #e5e7eb;
       text-align: left;
       color: #374151;
+      word-wrap: break-word;
     }
 
     th {
@@ -132,36 +130,46 @@
     tr:hover {
       background-color: #f9fafb;
     }
+
+   .name-col { width: 20%; text-align: left; }
+.category-col { width: 30%; text-align: left; }
+.desc-col { width: 40%; text-align: left; }
+.actions-col { width: 15%; text-align: right; }
   }
 
-  p {
-    color: #6b7280;
-    padding: 14px;
+  .category-badge {
+    display: inline-block;
+    background-color: #1e68b342;
+    color: #374151;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .edit-btn { color: #2563eb; }
+    .delete-btn { color: #dc2626; }
   }
 }
 
-/* Actions (edit/delete) */
-.actions {
-  display: flex;
-  gap: 10px;
-
-  button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    transition: transform 0.2s ease;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
-  .edit-btn {
-    color: #2563eb;
-  }
-
-  .delete-btn {
-    color: #dc2626;
-  }
+/* Messages */
+.table-card p {
+  color: #6b7280;
+  margin: 0;
 }

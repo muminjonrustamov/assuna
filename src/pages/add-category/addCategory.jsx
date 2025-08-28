@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import './addCategory.scss';
-import { getCategories, createCategory } from '../../API/api';
+import { createCategory } from '../../utils/supabase';
 
 const AddCategory = () => {
   const navigate = useNavigate();
-
   const [category, setCategory] = useState({
     name_en: '',
     name_ru: '',
@@ -15,21 +14,6 @@ const AddCategory = () => {
     description_ru: '',
     description_uz: '',
   });
-
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await getCategories();
-        setCategories(res || []);
-      } catch (error) {
-        console.error('Ошибка при загрузке категорий:', error);
-      }
-    };
-
-    fetchCategories();
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +25,7 @@ const AddCategory = () => {
     try {
       const res = await createCategory(category);
       console.log('✅ Категория добавлена:', res);
-      navigate('/product');
+      navigate('/dashboard'); // вернуться в Dashboard
     } catch (error) {
       console.error('❌ Ошибка при добавлении категории:', error);
       alert('Ошибка при сохранении категории.');
@@ -57,7 +41,7 @@ const AddCategory = () => {
       <h2>Add Category</h2>
       <form onSubmit={handleSubmit}>
         <div className="row-wrapper">
-          {['en', 'ru', 'uz'].map((lang) => (
+          {['en', 'ru', 'uz'].map(lang => (
             <div className="lang-box" key={lang}>
               <label>Name ({lang.toUpperCase()})</label>
               <input
@@ -76,7 +60,6 @@ const AddCategory = () => {
             </div>
           ))}
         </div>
-
         <button type="submit">Save</button>
       </form>
     </div>

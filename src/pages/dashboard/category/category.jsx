@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import api from '../../../API/api';
+import { supabase } from '../../../utils/supabase';
 import './category.scss';
 
 const Category = () => {
@@ -10,38 +10,44 @@ const Category = () => {
   const currentLang = i18n.language;
   const navigate = useNavigate();
 
+  // 🔹 Получение категорий
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const res = await api.get('/categories');
-        setCategories(res.data);
+        const { data, error } = await supabase.from('Category').select('*');
+        if (error) throw error;
+        setCategories(data || []);
       } catch (error) {
-        console.error('Ошибка при получении категорий:', error);
+        console.error('Ошибка при получении категорий:', error.message);
       }
     };
 
     fetchCategories();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
-
-  const handleEdit = (categoryId) => {
-    navigate(`/dashboard/edit-category/${categoryId}`);
-  };
-
+  // 🔹 Удаление категории
   const handleDelete = async (categoryId) => {
     if (window.confirm('Вы уверены, что хотите удалить эту категорию?')) {
       try {
-        await api.delete(`/categories/${categoryId}`);
-        setCategories(categories.filter(cat => cat._id !== categoryId));
+        const { error } = await supabase
+          .from('Category')
+          .delete()
+          .eq('id', categoryId);
+
+        if (error) throw error;
+
+        setCategories(categories.filter((cat) => cat.id !== categoryId));
       } catch (error) {
-        console.error('Ошибка при удалении категории:', error);
+        console.error('Ошибка при удалении категории:', error.message);
         alert('Не удалось удалить категорию.');
       }
     }
+  };
+
+  // 🔹 Выход
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
   };
 
   return (
@@ -77,46 +83,47 @@ const Category = () => {
           {categories.length === 0 ? (
             <p>Loading...</p>
           ) : (
-            <>
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name ({currentLang.toUpperCase()})</th>
-                    <th>Description ({currentLang.toUpperCase()})</th>
-                    <th>Actions</th>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name ({currentLang.toUpperCase()})</th>
+                  <th>Description ({currentLang.toUpperCase()})</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {categories.map((cat) => (
+                  <tr key={cat.id}>
+                    {/* Название + ID */}
+                    <td>
+                      <div className="category-name-with-id">
+                        <strong>{cat[`name_${currentLang}`]}</strong>
+                        <p className="category-id">ID: {cat.id}</p>
+                      </div>
+                    </td>
+
+                    {/* Описание */}
+                    <td>{cat[`description_${currentLang}`]}</td>
+
+                    {/* Действия */}
+                    <td className="actions">
+                      <button
+                        className="edit-btn"
+                        onClick={() => navigate(`/dashboard/edit-category/${cat.id}`)}
+                      >
+                        ✏️
+                      </button>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDelete(cat.id)}
+                      >
+                        🗑️
+                      </button>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {categories.map((cat, i) => (
-                    <tr key={cat._id}>
-                      <td>{i + 1}</td>
-                      <td>
-                        <div className="category-name-with-id">
-                          {cat[`name_${currentLang}`]}
-                          <p className="category-id">ID: {cat._id}</p>
-                        </div>
-                      </td>
-                      <td>{cat[`description_${currentLang}`]}</td>
-                      <td className="actions">
-                        <button
-                          className="edit-btn"
-                          onClick={() => handleEdit(cat._id)}
-                        >
-                          ✏️
-                        </button>
-                        <button
-                          className="delete-btn"
-                          onClick={() => handleDelete(cat._id)}
-                        >
-                          🗑️
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </>
+                ))}
+              </tbody>
+            </table>
           )}
         </div>
       </main>

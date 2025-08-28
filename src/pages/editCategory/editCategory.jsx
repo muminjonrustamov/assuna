@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import api from '../../API/api';
+import { supabase } from '../../utils/supabase';
 
 const EditCategory = () => {
   const navigate = useNavigate();
@@ -13,24 +13,26 @@ const EditCategory = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // 🔹 Получение категории по id
   useEffect(() => {
     const fetchCategory = async () => {
       try {
-        const res = await api.get('/categories');
-        console.log('Старые данные категорий:', res.data);
+        const { data, error } = await supabase
+          .from('Category') // 👈 исправлено
+          .select('*')
+          .eq('id', id)
+          .single();
 
-        const foundCategory = res.data.find(cat => cat._id === id);
-
-        if (!foundCategory) {
+        if (error) throw error;
+        if (!data) {
           setError('Категория не найдена.');
         } else {
-          setCategory(foundCategory);
+          setCategory(data);
         }
-
-        setIsLoading(false);
       } catch (err) {
-        console.error('Ошибка при получении данных категории:', err);
+        console.error('Ошибка при получении данных категории:', err.message);
         setError('Не удалось загрузить данные категории.');
+      } finally {
         setIsLoading(false);
       }
     };
@@ -38,6 +40,7 @@ const EditCategory = () => {
     fetchCategory();
   }, [id]);
 
+  // 🔹 Обновление состояния при вводе
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCategory((prevData) => ({
@@ -46,14 +49,21 @@ const EditCategory = () => {
     }));
   };
 
+  // 🔹 Сохранение изменений
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.put(`/categories/${id}`, category);
+      const { error } = await supabase
+        .from('Category') // 👈 исправлено
+        .update(category)
+        .eq('id', id);
+
+      if (error) throw error;
+
       alert('Категория успешно обновлена!');
       navigate('/dashboard/category');
     } catch (err) {
-      console.error('❌ Ошибка при обновлении категории:', err);
+      console.error('❌ Ошибка при обновлении категории:', err.message);
       alert('Ошибка при обновлении категории. Попробуйте еще раз.');
     }
   };
@@ -104,4 +114,4 @@ const EditCategory = () => {
   );
 };
 
-export default EditCategory
+export default EditCategory;
