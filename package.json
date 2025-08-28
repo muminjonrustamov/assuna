@@ -53,5 +53,16 @@
   },
   "devDependencies": {
     "typescript": "^4.9.5"
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muminjonrustamov/assuna.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/muminjonrustamov/assuna/issues"
   }
 }
