@@ -10,7 +10,6 @@ const Category = () => {
   const currentLang = i18n.language;
   const navigate = useNavigate();
 
-  // 🔹 Получение категорий
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -25,7 +24,6 @@ const Category = () => {
     fetchCategories();
   }, []);
 
-  // 🔹 Удаление категории
   const handleDelete = async (categoryId) => {
     if (window.confirm('Вы уверены, что хотите удалить эту категорию?')) {
       try {
@@ -44,7 +42,6 @@ const Category = () => {
     }
   };
 
-  // 🔹 Выход
   const handleLogout = () => {
     localStorage.removeItem('token');
     navigate('/login');
@@ -53,13 +50,15 @@ const Category = () => {
   return (
     <div className="category-page">
       <aside className="sidebar">
-        <h2>Dashboard</h2>
-        <nav>
-          <ul>
-            <li onClick={() => navigate('/dashboard')}>📦 Products</li>
-            <li onClick={() => navigate('/dashboard/category')}>🗂️ Category</li>
-          </ul>
-        </nav>
+        <div className="top">
+          <h2>Dashboard</h2>
+          <nav>
+            <ul>
+              <li onClick={() => navigate('/dashboard')}>📦 Products</li>
+              <li onClick={() => navigate('/dashboard/category')}>🗂️ Category</li>
+            </ul>
+          </nav>
+        </div>
 
         <div className="logout-section">
           <button className="logout-btn" onClick={handleLogout}>
@@ -94,22 +93,19 @@ const Category = () => {
               <tbody>
                 {categories.map((cat) => (
                   <tr key={cat.id}>
-                    {/* Название + ID */}
                     <td>
                       <div className="category-name-with-id">
                         <strong>{cat[`name_${currentLang}`]}</strong>
                         <p className="category-id">ID: {cat.id}</p>
                       </div>
                     </td>
-
-                    {/* Описание */}
                     <td>{cat[`description_${currentLang}`]}</td>
-
-                    {/* Действия */}
                     <td className="actions">
                       <button
                         className="edit-btn"
-                        onClick={() => navigate(`/dashboard/edit-category/${cat.id}`)}
+                        onClick={() =>
+                          navigate(`/dashboard/edit-category/${cat.id}`)
+                        }
                       >
                         ✏️
                       </button>

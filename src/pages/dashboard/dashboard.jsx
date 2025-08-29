@@ -47,13 +47,10 @@ const Dashboard = () => {
     if (!window.confirm('Удалить этот продукт?')) return;
 
     try {
-      const { error } = await supabase
-        .from('Products')
-        .delete()
-        .eq('id', id);
+      const { error } = await supabase.from('Products').delete().eq('id', id);
       if (error) throw error;
 
-      setProducts(prev => prev.filter(p => p.id !== id));
+      setProducts((prev) => prev.filter((p) => p.id !== id));
     } catch (err) {
       console.error('Ошибка при удалении продукта:', err.message);
       alert('Не удалось удалить продукт');
@@ -61,7 +58,7 @@ const Dashboard = () => {
   };
 
   const getCategoryName = (categoryId) => {
-    const cat = categories.find(c => c.id === categoryId);
+    const cat = categories.find((c) => c.id === categoryId);
     if (!cat) return '-';
     return currentLang === 'uz'
       ? cat.name_uz
@@ -82,6 +79,7 @@ const Dashboard = () => {
             </ul>
           </nav>
         </div>
+
         <button
           className="logout-btn"
           onClick={() => {
@@ -112,40 +110,44 @@ const Dashboard = () => {
           ) : (
             <table>
               <thead>
-  <tr>
-    <th className="name-col">Name</th>
-    <th className="category-col">Category</th>
-    <th className="desc-col">Description</th>
-    <th className="actions-col">Actions</th>
-  </tr>
-</thead>
-<tbody>
-  {products.map((prod) => (
-    <tr key={prod.id}>
-      <td className="name-col">{prod[`name_${currentLang}`] || '-'}</td>
-      <td className="category-col">
-        <span className="category-badge">{getCategoryName(prod.category)}</span>
-      </td>
-      <td className="desc-col">{prod[`description_${currentLang}`] || '-'}</td>
-      <td className="actions-col">
-        <div className="actions">
-          <button
-            className="edit-btn"
-            onClick={() => navigate(`/dashboard/edit/${prod.id}`)}
-          >
-            ✏️
-          </button>
-          <button
-            className="delete-btn"
-            onClick={() => deleteProduct(prod.id)}
-          >
-            🗑️
-          </button>
-        </div>
-      </td>
-    </tr>
-  ))}
-</tbody>
+                <tr>
+                  <th className="name-col">Name</th>
+                  <th className="category-col">Category</th>
+                  <th className="desc-col">Description</th>
+                  <th className="actions-col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((prod) => (
+                  <tr key={prod.id}>
+                    <td className="name-col">{prod[`name_${currentLang}`] || '-'}</td>
+                    <td className="category-col">
+                      <span className="category-badge">
+                        {getCategoryName(prod.category)}
+                      </span>
+                    </td>
+                    <td className="desc-col">
+                      {prod[`description_${currentLang}`] || '-'}
+                    </td>
+                    <td className="actions-col">
+                      <div className="actions">
+                        <button
+                          className="edit-btn"
+                          onClick={() => navigate(`/dashboard/edit/${prod.id}`)}
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          className="delete-btn"
+                          onClick={() => deleteProduct(prod.id)}
+                        >
+                          🗑️
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
             </table>
           )}
         </div>

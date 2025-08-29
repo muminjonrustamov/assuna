@@ -18,6 +18,11 @@
   flex-direction: column;
   justify-content: space-between;
 
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+
   .top {
     display: flex;
     flex-direction: column;
@@ -33,6 +38,7 @@
   nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 
     li {
       padding: 12px 18px;
@@ -71,6 +77,8 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  margin-left: 260px; /* отступ под фиксированный sidebar */
 
   h1 {
     font-size: 28px;
@@ -113,7 +121,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     table-layout: fixed;
 
-    th, td {
+    th,
+    td {
       padding: 16px;
       border-bottom: 1px solid #e5e7eb;
       text-align: left;
@@ -131,10 +140,22 @@
       background-color: #f9fafb;
     }
 
-   .name-col { width: 16%; text-align: left; }
-.category-col { width: 23%; text-align: left; }
-.desc-col { width: 40%; text-align: left; }
-.actions-col { width: 15%; text-align: right; }
+    .name-col {
+      width: 16%;
+      text-align: left;
+    }
+    .category-col {
+      width: 23%;
+      text-align: left;
+    }
+    .desc-col {
+      width: 40%;
+      text-align: left;
+    }
+    .actions-col {
+      width: 15%;
+      text-align: right;
+    }
   }
 
   .category-badge {
@@ -163,8 +184,12 @@
       }
     }
 
-    .edit-btn { color: #2563eb; }
-    .delete-btn { color: #dc2626; }
+    .edit-btn {
+      color: #2563eb;
+    }
+    .delete-btn {
+      color: #dc2626;
+    }
   }
 }
 
