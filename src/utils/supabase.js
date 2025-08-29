@@ -6,20 +6,13 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-console.log("✅ Supabase подключен:", {
-  url: supabaseUrl,
-  hasKey: !!supabaseKey,
-})
-
-// ==================== STORAGE ====================
+// storage
 
 export const uploadImage = async (file) => {
   if (!file) throw new Error("Файл не предоставлен");
 
   const fileExt = file.name.split('.').pop();
   const fileName = `${uuidv4()}.${fileExt}`;
-
-  console.log("Попытка загрузки файла:", { fileName, fileSize: file.size, fileType: file.type });
 
   const { error } = await supabase.storage
     .from('products')
@@ -31,11 +24,10 @@ export const uploadImage = async (file) => {
   }
 
   const { data } = supabase.storage.from('products').getPublicUrl(fileName);
-  console.log("Файл успешно загружен, URL:", data.publicUrl);
   return data.publicUrl;
 };
 
-// ==================== PRODUCTS ====================
+// product
 
 export const getProducts = async () => {
   const { data, error } = await supabase.from('Products').select('*');
@@ -67,7 +59,7 @@ export const deleteProduct = async (id) => {
   return { message: '✅ Product deleted successfully' };
 };
 
-// ==================== CATEGORIES ====================
+// category
 
 export const getCategories = async () => {
   const { data, error } = await supabase.from('Category').select('*');
