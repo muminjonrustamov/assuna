@@ -21,9 +21,22 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    // Если мы на dashboard — не подключаем livechat
-    if (location.pathname.startsWith('/dashboard')) return;
+    // Если мы в dashboard → убираем чат
+    if (location.pathname.startsWith('/dashboard')) {
+      const tawkScript = document.querySelector("script[src*='tawk.to']");
+      if (tawkScript) tawkScript.remove();
 
+      if (window.Tawk_API) {
+        try {
+          window.Tawk_API.hideWidget();
+        } catch (e) {}
+      }
+      window.__tawk_added = false;
+      window.Tawk_API = null;
+      return; // прекращаем выполнение
+    }
+
+    // Если чат уже подключен, не загружаем второй раз
     if (window.__tawk_added) return;
     window.__tawk_added = true;
 
@@ -44,19 +57,6 @@ function App() {
       ) {
         try {
           if (window.Tawk_API.showWidget) window.Tawk_API.showWidget();
-          if (window.Tawk_API.maximize) {
-            setTimeout(() => {
-              try {
-                window.Tawk_API.maximize();
-              } catch (e) {}
-            }, 300);
-          } else if (window.Tawk_API.toggle) {
-            setTimeout(() => {
-              try {
-                window.Tawk_API.toggle();
-              } catch (e) {}
-            }, 300);
-          }
         } catch (e) {}
         clearInterval(interval);
       }
