@@ -6,7 +6,7 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-// storage
+// ==================== STORAGE ====================
 
 export const uploadImage = async (file) => {
   if (!file) throw new Error("Файл не предоставлен");
@@ -18,16 +18,13 @@ export const uploadImage = async (file) => {
     .from('products')
     .upload(fileName, file);
 
-  if (error) {
-    console.error("Ошибка загрузки файла:", error.message, error.details);
-    throw error;
-  }
+  if (error) throw error;
 
   const { data } = supabase.storage.from('products').getPublicUrl(fileName);
   return data.publicUrl;
 };
 
-// product
+// ==================== PRODUCTS ====================
 
 export const getProducts = async () => {
   const { data, error } = await supabase.from('Products').select('*');
@@ -36,19 +33,32 @@ export const getProducts = async () => {
 };
 
 export const getProductById = async (id) => {
-  const { data, error } = await supabase.from('Products').select('*').eq('id', id).single();
+  const { data, error } = await supabase
+    .from('Products')
+    .select('*')
+    .eq('id', id)
+    .single();
   if (error) throw error;
   return data;
 };
 
 export const createProduct = async (product) => {
-  const { data, error } = await supabase.from('Products').insert([product]).select().single();
+  const { data, error } = await supabase
+    .from('Products')
+    .insert([product])
+    .select()
+    .single();
   if (error) throw error;
   return data;
 };
 
 export const updateProduct = async (id, product) => {
-  const { data, error } = await supabase.from('Products').update(product).eq('id', id).select().single();
+  const { data, error } = await supabase
+    .from('Products')
+    .update(product)
+    .eq('id', id)
+    .select()
+    .single();
   if (error) throw error;
   return data;
 };
@@ -59,7 +69,7 @@ export const deleteProduct = async (id) => {
   return { message: '✅ Product deleted successfully' };
 };
 
-// category
+// ==================== CATEGORY ====================
 
 export const getCategories = async () => {
   const { data, error } = await supabase.from('Category').select('*');
@@ -68,19 +78,32 @@ export const getCategories = async () => {
 };
 
 export const getCategoryById = async (id) => {
-  const { data, error } = await supabase.from('Category').select('*').eq('id', id).single();
+  const { data, error } = await supabase
+    .from('Category')
+    .select('*')
+    .eq('id', id)
+    .single();
   if (error) throw error;
   return data;
 };
 
 export const createCategory = async (category) => {
-  const { data, error } = await supabase.from('Category').insert([category]).select().single();
+  const { data, error } = await supabase
+    .from('Category')
+    .insert([category])
+    .select()
+    .single();
   if (error) throw error;
   return data;
 };
 
 export const updateCategory = async (id, category) => {
-  const { data, error } = await supabase.from('Category').update(category).eq('id', id).select().single();
+  const { data, error } = await supabase
+    .from('Category')
+    .update(category)
+    .eq('id', id)
+    .select()
+    .single();
   if (error) throw error;
   return data;
 };
