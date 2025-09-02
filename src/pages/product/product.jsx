@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./product.scss";
 import { useTranslation } from "react-i18next";
 import { FaArrowRight } from "react-icons/fa";
-import { ClipLoader } from "react-spinners";
+  import { ClipLoader } from "react-spinners";
 import { supabase } from "../../utils/supabase";
 
 const BUCKET_NAME = "products";
@@ -82,7 +82,6 @@ const Product = () => {
         <h2>{t("product.title")}</h2>
         <p className="productp">{t("product.description")}</p>
 
-        {/* Loader после текста */}
         {loading && (
           <div className="loading-center" aria-live="polite" aria-busy="true">
             <ClipLoader size={60} speedMultiplier={0.9} />

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import "./productDetail.scss";
 import { supabase } from "../../utils/supabase";
+import { ClipLoader } from "react-spinners";
 
 const BUCKET_NAME = "products";
 
@@ -31,7 +32,6 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Продукт
         const { data: productData, error: productError } = await supabase
           .from("Products")
           .select("*")
@@ -39,13 +39,11 @@ const ProductDetail = () => {
           .single();
         if (productError || !productData) throw productError || new Error("Product not found");
 
-        // Категории
         const { data: categoriesData, error: catError } = await supabase
           .from("Category")
           .select("*");
         if (catError) throw catError;
 
-        // Парсим изображения
         let images = [];
         if (productData.images) {
           try {
@@ -74,7 +72,13 @@ const ProductDetail = () => {
     fetchData();
   }, [id, lang, t]);
 
-  if (loading) return <p className="loading-text">{t("loading") || "Loading..."}</p>;
+  if (loading)
+    return (
+      <div className="loader-container">
+        <ClipLoader size={80} color="#f97316" />
+      </div>
+    );
+
   if (error || !product) {
     return (
       <div className="product-detail">

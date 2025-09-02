@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import Home from './pages/home/home';
 import About from './pages/about/about';
@@ -18,55 +18,6 @@ import ProtectedRoute from './components/protectedRoute/protectedRoute';
 import Layout from './Layout/Layout';
 
 function App() {
-  const location = useLocation();
-
-  useEffect(() => {
-    // Если мы в dashboard → убираем чат
-    if (location.pathname.startsWith('/dashboard')) {
-      const tawkScript = document.querySelector("script[src*='tawk.to']");
-      if (tawkScript) tawkScript.remove();
-
-      if (window.Tawk_API) {
-        try {
-          window.Tawk_API.hideWidget();
-        } catch (e) {}
-      }
-      window.__tawk_added = false;
-      window.Tawk_API = null;
-      return; // прекращаем выполнение
-    }
-
-    // Если чат уже подключен, не загружаем второй раз
-    if (window.__tawk_added) return;
-    window.__tawk_added = true;
-
-    window.Tawk_API = window.Tawk_API || {};
-    window.Tawk_LoadStart = new Date();
-
-    const s1 = document.createElement('script');
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/689dc5e0664fee19271dfe55/1j2k4ptds';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
-    document.body.appendChild(s1);
-
-    const interval = setInterval(() => {
-      if (
-        window.Tawk_API &&
-        (window.Tawk_API.showWidget || window.Tawk_API.toggle || window.Tawk_API.maximize)
-      ) {
-        try {
-          if (window.Tawk_API.showWidget) window.Tawk_API.showWidget();
-        } catch (e) {}
-        clearInterval(interval);
-      }
-    }, 500);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, [location.pathname]);
-
   return (
     <Routes>
       <Route element={<Layout />}>

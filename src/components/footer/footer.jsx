@@ -12,20 +12,17 @@ const Footer = () => {
   const { t } = useTranslation();
 
   // Данные контактов
-  const email = "info@example.com";
-  const phone = "+1234567890";
-  const location = "Moscow, Russia";
+  const email = "assuna01@gmail.com";
+  const phone = "+998882540001";  
 
   return (
     <footer className="footer">
       <div className="footer-container">
-        {/* Left Section: Logo and Description */}
         <div className="footer-section left">
           <img src={Logo} alt="As-Sunna Logo" className="footer-logo" />
           <p>{t('footer.desc')}</p>
         </div>
 
-        {/* Center Section: Contact Info */}
         <div className="footer-section center">
           <h3>{t('footer.contact')}</h3>
           <div className="contact-item">
@@ -44,8 +41,6 @@ const Footer = () => {
           <div className="contact-item">
             <MdEmail /> <a href={`mailto:${email}`}>{t('footer.email')}</a>
           </div>
-
-          {/* Social Icons */}
           <div className="social-icons">
             <a href="https://www.instagram.com/assunna.uz" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
             <a href="https://www.facebook.com/assunnapharmaceuticaluz/" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
