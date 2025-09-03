@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./product.scss";
 import { useTranslation } from "react-i18next";
 import { FaArrowRight } from "react-icons/fa";
-  import { ClipLoader } from "react-spinners";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { ClipLoader } from "react-spinners";
 import { supabase } from "../../utils/supabase";
 
 const BUCKET_NAME = "products";
@@ -18,6 +19,17 @@ const Product = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [collapsed, setCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 992);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -95,33 +107,43 @@ const Product = () => {
           <div className="products-with-sidebar">
             <aside className="categories-sidebar">
               <div className="categories-box">
-                <h4>{t("product.categories") || "Категории"}</h4>
-                <button
-                  className={selectedCategory === "all" ? "active" : ""}
-                  onClick={() => setSelectedCategory("all")}
-                >
-                  {t("product.allProducts") || "Все продукты"}
-                </button>
-                {categories.map((cat) => (
-                  <button
-                    key={cat.id}
-                    className={selectedCategory === cat.id ? "active" : ""}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    title={
-                      lang === "uz"
-                        ? cat.name_uz
-                        : lang === "ru"
-                        ? cat.name_ru
-                        : cat.name_en
-                    }
-                  >
-                    {lang === "uz"
-                      ? cat.name_uz
-                      : lang === "ru"
-                      ? cat.name_ru
-                      : cat.name_en}
-                  </button>
-                ))}
+                <h4 onClick={() => isMobile && setCollapsed(!collapsed)}>
+                  {t("product.categories") || "Категории"}
+                  {isMobile &&
+                    (collapsed ? <FaChevronDown /> : <FaChevronUp />)}
+                </h4>
+                {(!isMobile || !collapsed) && (
+                  <>
+                    <button
+                      className={selectedCategory === "all" ? "active" : ""}
+                      onClick={() => setSelectedCategory("all")}
+                    >
+                      {t("product.allProducts") || "Все продукты"}
+                    </button>
+                    {categories.map((cat) => (
+                      <button
+                        key={cat.id}
+                        className={
+                          selectedCategory === cat.id ? "active" : ""
+                        }
+                        onClick={() => setSelectedCategory(cat.id)}
+                        title={
+                          lang === "uz"
+                            ? cat.name_uz
+                            : lang === "ru"
+                            ? cat.name_ru
+                            : cat.name_en
+                        }
+                      >
+                        {lang === "uz"
+                          ? cat.name_uz
+                          : lang === "ru"
+                          ? cat.name_ru
+                          : cat.name_en}
+                      </button>
+                    ))}
+                  </>
+                )}
               </div>
             </aside>
 
@@ -130,7 +152,8 @@ const Product = () => {
                 <p>{t("product.noProducts")}</p>
               ) : (
                 filteredProducts.map((prod) => {
-                  const firstImage = prod.images.length > 0 ? prod.images[0] : null;
+                  const firstImage =
+                    prod.images.length > 0 ? prod.images[0] : null;
                   return (
                     <div key={prod.id} className="product-card">
                       {firstImage ? (
@@ -163,7 +186,8 @@ const Product = () => {
                             className="details-btn"
                             onClick={() => navigate(`/product/${prod.id}`)}
                           >
-                            {t("product.detailsBtn")} <FaArrowRight className="arrow-icon" />
+                            {t("product.detailsBtn")}{" "}
+                            <FaArrowRight className="arrow-icon" />
                           </button>
                         </div>
                       </div>

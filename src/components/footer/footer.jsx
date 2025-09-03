@@ -11,7 +11,6 @@ import './footer.scss';
 const Footer = () => {
   const { t } = useTranslation();
 
-  // Данные контактов
   const email = "assuna01@gmail.com";
   const phone = "+998882540001";  
 
