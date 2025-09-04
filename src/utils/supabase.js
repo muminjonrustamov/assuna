@@ -6,7 +6,7 @@ const supabaseKey = process.env.REACT_APP_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
-// ==================== STORAGE ====================
+// Storage
 
 export const uploadImage = async (file) => {
   if (!file) throw new Error("Файл не предоставлен");
@@ -24,7 +24,7 @@ export const uploadImage = async (file) => {
   return data.publicUrl;
 };
 
-// ==================== PRODUCTS ====================
+// Products
 
 export const getProducts = async () => {
   const { data, error } = await supabase.from('Products').select('*');
@@ -69,7 +69,7 @@ export const deleteProduct = async (id) => {
   return { message: '✅ Product deleted successfully' };
 };
 
-// ==================== CATEGORY ====================
+// Category
 
 export const getCategories = async () => {
   const { data, error } = await supabase.from('Category').select('*');

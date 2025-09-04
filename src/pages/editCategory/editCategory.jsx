@@ -13,12 +13,11 @@ const EditCategory = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 🔹 Получение категории по id
   useEffect(() => {
     const fetchCategory = async () => {
       try {
         const { data, error } = await supabase
-          .from('Category') // 👈 исправлено
+          .from('Category')
           .select('*')
           .eq('id', id)
           .single();
@@ -40,7 +39,6 @@ const EditCategory = () => {
     fetchCategory();
   }, [id]);
 
-  // 🔹 Обновление состояния при вводе
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCategory((prevData) => ({
@@ -49,12 +47,11 @@ const EditCategory = () => {
     }));
   };
 
-  // 🔹 Сохранение изменений
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const { error } = await supabase
-        .from('Category') // 👈 исправлено
+        .from('Category')
         .update(category)
         .eq('id', id);
 

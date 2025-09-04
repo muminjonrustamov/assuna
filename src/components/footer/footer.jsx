@@ -1,11 +1,10 @@
-import React from 'react';
-import Logo from '../../images/Logo.png';
-import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt, FaInstagram, FaFacebook, FaYoutube } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { FaTelegramPlane } from "react-icons/fa"; // для Telegram
-import { Link } from 'react-router-dom';
+import { FaLocationDot } from "react-icons/fa6";
+import { FaTelegramPlane } from "react-icons/fa";
 import { useTranslation } from 'react-i18next';
+import Logo from '../../images/Logo.png';
+import { MdEmail } from "react-icons/md";
+import { Link } from 'react-router-dom';
 import './footer.scss';
 
 const Footer = () => {
@@ -48,7 +47,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Right Section: About Company Links */}
         <div className="footer-section right">
           <h3>{t('footer.navigation')}</h3>
           <ul>

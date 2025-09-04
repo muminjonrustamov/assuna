@@ -82,7 +82,6 @@ const Home = () => {
 
   return (
     <>
-      {/* Showcase start */}
       <div className="showcase">
         <video
           className="showcase-video"
@@ -113,9 +112,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* Showcase End */}
 
-      {/* About Card Start */}
       <div className="about-card-big">
         <div className="about-card-text">
           <h1>{t("home.aboutTitle")}</h1>
@@ -139,9 +136,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* About Card End */}
 
-      {/* Company Start */}
       <div className="company">
         <div className="company-content">
           <div className="company-left">
@@ -198,7 +193,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* Company End */}
     </>
   );
 };

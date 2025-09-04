@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./product.scss";
 import { useTranslation } from "react-i18next";
 import { FaArrowRight } from "react-icons/fa";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
 import { supabase } from "../../utils/supabase";
 
@@ -11,25 +10,17 @@ const BUCKET_NAME = "products";
 
 const Product = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [collapsed, setCollapsed] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 992);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 992);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const queryParams = new URLSearchParams(location.search);
+  const selectedCategory = queryParams.get("category");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,7 +43,8 @@ const Product = () => {
               images = parsed.map((img) =>
                 img.startsWith("http")
                   ? img
-                  : supabase.storage.from(BUCKET_NAME).getPublicUrl(img).data.publicUrl
+                  : supabase.storage.from(BUCKET_NAME).getPublicUrl(img).data
+                      .publicUrl
               );
             } catch {
               images = [];
@@ -83,15 +75,16 @@ const Product = () => {
       : category.name_en;
   };
 
-  const filteredProducts =
-    selectedCategory === "all"
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
+  const filteredProducts = selectedCategory
+    ? products.filter((p) => String(p.category) === selectedCategory)
+    : products;
 
   return (
     <div className="product-page-big">
       <div className="product-page">
         <h2>{t("product.title")}</h2>
+
+        {/* Всегда описание */}
         <p className="productp">{t("product.description")}</p>
 
         {loading && (
@@ -105,48 +98,6 @@ const Product = () => {
 
         {!loading && (
           <div className="products-with-sidebar">
-            <aside className="categories-sidebar">
-              <div className="categories-box">
-                <h4 onClick={() => isMobile && setCollapsed(!collapsed)}>
-                  {t("product.categories") || "Категории"}
-                  {isMobile &&
-                    (collapsed ? <FaChevronDown /> : <FaChevronUp />)}
-                </h4>
-                {(!isMobile || !collapsed) && (
-                  <>
-                    <button
-                      className={selectedCategory === "all" ? "active" : ""}
-                      onClick={() => setSelectedCategory("all")}
-                    >
-                      {t("product.allProducts") || "Все продукты"}
-                    </button>
-                    {categories.map((cat) => (
-                      <button
-                        key={cat.id}
-                        className={
-                          selectedCategory === cat.id ? "active" : ""
-                        }
-                        onClick={() => setSelectedCategory(cat.id)}
-                        title={
-                          lang === "uz"
-                            ? cat.name_uz
-                            : lang === "ru"
-                            ? cat.name_ru
-                            : cat.name_en
-                        }
-                      >
-                        {lang === "uz"
-                          ? cat.name_uz
-                          : lang === "ru"
-                          ? cat.name_ru
-                          : cat.name_en}
-                      </button>
-                    ))}
-                  </>
-                )}
-              </div>
-            </aside>
-
             <div className="product-list">
               {filteredProducts.length === 0 ? (
                 <p>{t("product.noProducts")}</p>

@@ -25,7 +25,7 @@ const AddCategory = () => {
     try {
       const res = await createCategory(category);
       console.log('✅ Категория добавлена:', res);
-      navigate('/dashboard'); // вернуться в Dashboard
+      navigate('/dashboard');
     } catch (error) {
       console.error('❌ Ошибка при добавлении категории:', error);
       alert('Ошибка при сохранении категории.');

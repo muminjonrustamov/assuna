@@ -41,7 +41,7 @@
       form {
         display: flex;
         flex-direction: column;
-        gap: 6px; // 🔹 меньше расстояние между элементами
+        gap: 6px;
 
         .form-row {
           display: flex;
@@ -55,7 +55,7 @@
         .form-group {
           display: flex;
           flex-direction: column;
-          gap: 2px; // 🔹 ещё меньше между label и input
+          gap: 2px;
 
           label {
             font-weight: 600;
@@ -66,7 +66,7 @@
 
         input,
         textarea {
-          padding: 5px 8px; // 🔹 компактные поля
+          padding: 5px 8px;
           border: 1px solid #ccc;
           border-radius: 5px;
           font-size: 13px;

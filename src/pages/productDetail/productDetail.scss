@@ -67,7 +67,7 @@
         display: flex;
         gap: 12px;
         flex-wrap: wrap;
-        justify-content: center; // ✅ всегда по центру
+        justify-content: center;
         margin-top: 8px;
 
         .thumbnail {
@@ -95,7 +95,7 @@
 
       @media (min-width: 768px) {
         width: 50%;
-        align-items: center; // ✅ не смещаем влево
+        align-items: center;
       }
     }
 

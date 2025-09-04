@@ -1,4 +1,3 @@
-// Variables
 $primary-color: #0077ff;
 $primary-color-hover: #005ecb;
 $text-color: #333;
@@ -75,8 +74,6 @@ $shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 20px;
-    
-    // Новая структура для каждого поля формы
     div {
       display: flex;
       flex-direction: column;

@@ -17,27 +17,27 @@
   }
 
   .language-switcher {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 
-  .flag {
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: transform 0.2s, box-shadow 0.2s;
+    .flag {
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: transform 0.2s, box-shadow 0.2s;
 
-    &:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    }
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      }
 
-    &.active {
-      border: 2px solid orangered;
+      &.active {
+        border: 2px solid orangered;
+      }
     }
   }
-}
 
   .menu-icon {
     display: none;
@@ -52,51 +52,131 @@
     gap: 40px;
 
     ul {
-  display: flex;
-  list-style: none;
-  gap: 30px;
+      display: flex;
+      list-style: none;
+      gap: 30px;
 
-  li a {
-    position: relative;
-    text-decoration: none;
-    font-weight: 500;
-    color: #6e7785;
-    transition: color 0.3s;
+      li {
+        position: relative;
+        display: flex;
+        align-items: center;
 
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0%;
-      height: 2px;
-      background-color: orangered;
-      transition: width 0.3s ease;
-    }
+        a {
+          position: relative;
+          text-decoration: none;
+          font-weight: 500;
+          color: #6e7785;
+          transition: color 0.3s;
+          font-size: 16px;
 
-    &:hover {
-      color: orangered;
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 2px;
+            background-color: orangered;
+            transition: width 0.3s ease;
+          }
 
-      &::after {
-        width: 100%;
-      }
-    }
+          &:hover {
+            color: orangered;
 
-    &.active {
-      color: orangered;
+            &::after {
+              width: 100%;
+            }
+          }
 
-      &::after {
-        width: 100%;
+          &.active {
+            color: orangered;
+
+            &::after {
+              width: 100%;
+            }
+          }
+        }
+
+        .dropdown-toggle {
+          margin-top: 2px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          margin-left: 5px;
+          padding: 0;
+
+          .arrow {
+            font-size: 12px;
+            color: #6e7785;
+            transition: transform 0.3s ease, color 0.3s;
+
+            &.open {
+              transform: rotate(180deg);
+              color: orangered;
+            }
+          }
+        }
+
+        /* dropdown */
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: #fff;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+          border-radius: 10px;
+          margin-top: 10px;
+          min-width: 220px;
+          display: none;
+          flex-direction: column;
+          padding: 10px 0;
+          z-index: 2000;
+
+          li {
+            width: 100%;
+
+            button {
+              width: 100%;
+              text-align: left;
+              padding: 12px 20px;
+              background: none;
+              border: none;
+              cursor: pointer;
+              font-size: 15px;
+              color: #444;
+              transition: background 0.3s, color 0.3s;
+
+              &:hover {
+                background: #f7f7f7;
+                color: orangered;
+              }
+            }
+          }
+        }
+
+        .dropdown-menu.show {
+          display: flex;
+          animation: dropdownFade 0.25s ease forwards;
+        }
       }
     }
   }
 }
 
-
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-// 📱 Responsive
+/* 📱 Responsive */
 @media (max-width: 992px) {
   .header {
     padding: 0 20px;
@@ -130,8 +210,22 @@
         width: 100%;
         gap: 20px;
 
-        li a {
-          font-size: 18px;
+        li {
+          width: 100%;
+
+          .dropdown-menu {
+            position: static;
+            margin-top: 10px;
+            box-shadow: none;
+            border-radius: 0;
+            background: transparent;
+
+            li button {
+              padding: 10px 0;
+              font-size: 16px;
+              color: #444;
+            }
+          }
         }
       }
 

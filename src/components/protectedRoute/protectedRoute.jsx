@@ -1,4 +1,3 @@
-import React from 'react';
 import { Navigate } from 'react-router-dom';
 import SHA256 from 'crypto-js/sha256';
 

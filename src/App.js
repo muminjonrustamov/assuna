@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-
+import { Route, Routes } from 'react-router-dom';
 import Home from './pages/home/home';
 import About from './pages/about/about';
 import Product from './pages/product/product';
@@ -13,7 +11,6 @@ import EditProduct from './pages/editProduct/editProduct';
 import Login from './pages/login/login';
 import CategoriesPage from './pages/dashboard/category/category';
 import EditCategory from './pages/editCategory/editCategory';
-
 import ProtectedRoute from './components/protectedRoute/protectedRoute';
 import Layout from './Layout/Layout';
 

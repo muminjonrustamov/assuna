@@ -70,7 +70,7 @@ const AddProduct = () => {
 
       const uploadedUrls = [];
       for (let file of formData.images) {
-        const url = await uploadImage(file); // ✅ теперь строка
+        const url = await uploadImage(file);
         uploadedUrls.push(url);
       }
 
@@ -120,7 +120,6 @@ const AddProduct = () => {
               />
             </div>
 
-            {/* RU */}
             <div className="form-language-section">
               <h3>
                 <img src={RUFlag} alt="Russian" className="flag-icon" /> Русский
@@ -140,7 +139,6 @@ const AddProduct = () => {
               />
             </div>
 
-            {/* UZ */}
             <div className="form-language-section">
               <h3>
                 <img src={UZFlag} alt="Uzbek" className="flag-icon" /> O‘zbek
@@ -160,7 +158,6 @@ const AddProduct = () => {
               />
             </div>
 
-            {/* Category */}
             <div className="form-group">
               <label>Category:</label>
               <select value={formData.category} onChange={handleCatChange} required>
@@ -177,7 +174,6 @@ const AddProduct = () => {
               </select>
             </div>
 
-            {/* Images */}
             <div className="form-group">
               <label>Images:</label>
               <div className="custom-file-upload">
